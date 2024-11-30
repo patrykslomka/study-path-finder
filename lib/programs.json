@@ -1,0 +1,369 @@
+{
+  "programs": [
+    {
+      "name": "BSc International Business Administration",
+      "description": "The BSc International Business Administration at Tilburg University prepares students to become international business professionals. The program focuses on all functional aspects of business and integrates socially oriented courses, providing the necessary professional and practical skills for a managerial career in a global environment.",
+      "subjects": [
+        "Microeconomics",
+        "Financial Accounting",
+        "Foundations of International Strategy",
+        "Mathematics",
+        "Organizational Behavior",
+        "Programming and Quantitative Skills",
+        "Macroeconomics",
+        "Finance & Investment",
+        "Marketing Management",
+        "Project Management for IBA",
+        "Statistics 1",
+        "Human Resource Management",
+        "Comparative and Cross-Cultural Management",
+        "Corporate Finance",
+        "Philosophy of Science",
+        "Statistics 2",
+        "Operations Management",
+        "Decision Making in Marketing",
+        "International Business Research",
+        "Management Accounting",
+        "Corporate Governance",
+        "Decision Making with Business Analytics",
+        "Information Management",
+        "Global Sustainable Leadership",
+        "Global Ethics",
+        "Global Corporate Law",
+        "Innovation & Technology Management",
+        "Business Strategy & Data Analytics",
+        "Bachelor’s Thesis"
+      ],
+      "careers": [
+        "Consultant",
+        "Supply Chain Manager",
+        "Business Analyst",
+        "International Business Consultant",
+        "Global Marketing Manager",
+        "Financial Analyst",
+        "Project Manager",
+        "Entrepreneur"
+      ],
+      "skills": [
+        "Cross-Cultural Communication",
+        "Strategic Thinking",
+        "Analytical Skills",
+        "Project Management",
+        "Research Skills",
+        "Leadership",
+        "Problem Solving",
+        "Data Analysis"
+      ],
+      "keywords": [
+        "International Business",
+        "Global Markets",
+        "Cross-Cultural Management",
+        "Business Strategy",
+        "Finance",
+        "Innovation",
+        "Technology Management"
+      ]
+    },
+    {
+      "name": "BSc Entrepreneurship and Business Innovation",
+      "description": "The BSc Entrepreneurship and Business Innovation at Tilburg University is designed for students eager to create new value through entrepreneurship and business innovation. The program provides a solid academic foundation in entrepreneurship, business innovation, economics, finance, law, and ethics, combining academic insights with hands-on training.",
+      "subjects": [
+        "Theory in Action: Identifying Opportunities",
+        "Quantitative Methods to Understand Entrepreneurship",
+        "Entrepreneurship in Action 1: Finding an Unmet Need",
+        "Economics",
+        "Finance",
+        "Business Law",
+        "Ethics",
+        "Innovation Management",
+        "Strategic Management",
+        "Marketing for Entrepreneurs",
+        "Entrepreneurial Finance",
+        "Business Model Innovation",
+        "Social Entrepreneurship",
+        "Technology and Innovation",
+        "Entrepreneurship in Action 2: Developing a Business Plan"
+      ],
+      "careers": [
+        "Entrepreneur",
+        "Business Consultant",
+        "Innovation Manager",
+        "Product Manager",
+        "Startup Founder",
+        "Business Development Manager",
+        "Venture Capital Analyst",
+        "Corporate Innovator"
+      ],
+      "skills": [
+        "Opportunity Recognition",
+        "Innovative Thinking",
+        "Business Planning",
+        "Financial Acumen",
+        "Strategic Management",
+        "Leadership",
+        "Problem Solving",
+        "Networking"
+      ],
+      "keywords": [
+        "Entrepreneurship",
+        "Business Innovation",
+        "Startup",
+        "Innovation Management",
+        "Strategic Planning",
+        "Social Entrepreneurship"
+      ]
+    },
+    {
+      "name": "LLB Global Law",
+      "description": "The LLB Global Law at Tilburg University offers a comprehensive legal education with a global perspective. The program covers various legal systems and cultures, preparing students for a career in international law and global governance.",
+      "subjects": [
+        "Introduction to Global Law",
+        "Comparative Legal Systems",
+        "International Public Law",
+        "Human Rights Law",
+        "Corporate Law",
+        "European Union Law",
+        "International Trade Law",
+        "Legal Research and Writing",
+        "Global Legal Ethics",
+        "Conflict of Laws",
+        "Law and Technology",
+        "Environmental Law"
+      ],
+      "careers": [
+        "International Lawyer",
+        "Legal Consultant",
+        "Policy Advisor",
+        "Diplomat",
+        "Corporate Counsel",
+        "Human Rights Advocate"
+      ],
+      "skills": [
+        "Legal Analysis",
+        "Cross-Cultural Communication",
+        "Critical Thinking",
+        "Research Skills",
+        "Negotiation",
+        "Problem Solving"
+      ],
+      "keywords": [
+        "Global Law",
+        "International Law",
+        "Human Rights",
+        "Corporate Law",
+        "Legal Systems",
+        "Environmental Law"
+      ]
+    },
+    {
+      "name": "BSc Psychology",
+      "description": "The BSc Psychology program at Tilburg University provides a comprehensive understanding of human behavior and mental processes. The program covers various psychological theories and practices, preparing students for diverse careers in psychology and related fields.",
+      "subjects": [
+        "Introduction to Psychology",
+        "Cognitive Psychology",
+        "Developmental Psychology",
+        "Social Psychology",
+        "Biological Psychology",
+        "Clinical Psychology",
+        "Research Methods and Statistics",
+        "Personality Psychology",
+        "Psychopathology",
+        "Neuropsychology",
+        "Health Psychology",
+        "Work and Organizational Psychology"
+      ],
+      "careers": [
+        "Clinical Psychologist",
+        "Counselor",
+        "Human Resources Specialist",
+        "Market Research Analyst",
+        "Educational Psychologist",
+        "Neuropsychologist"
+      ],
+      "skills": [
+        "Analytical Thinking",
+        "Research Skills",
+        "Communication",
+        "Empathy",
+        "Problem Solving",
+        "Data Analysis"
+      ],
+      "keywords": [
+        "Psychology",
+        "Human Behavior",
+        "Mental Health",
+        "Cognitive Processes",
+        "Clinical Psychology",
+        "Research"
+      ]
+    },
+    {
+      "name": "BSc Cognitive Science and Artificial Intelligence",
+      "description": "The BSc Cognitive Science and Artificial Intelligence at Tilburg University combines insights from cognitive science and artificial intelligence to understand and develop intelligent systems. The program focuses on the intersection of human cognition and AI technologies, preparing students for careers in AI development, data science, and cognitive research.",
+      "subjects": [
+        "Introduction to Cognitive Science",
+        "Introduction to Artificial Intelligence",
+        "Programming for AI",
+        "Data Science",
+        "Machine Learning",
+        "Cognitive Psychology",
+        "Neuroscience",
+        "Human-Computer Interaction",
+        "Natural Language Processing",
+        "Robotics",
+        "Philosophy of Mind",
+        "Ethics of AI"
+      ],
+      "careers": [
+        "AI Developer",
+        "Data Scientist",
+        "Cognitive Scientist",
+        "Machine Learning Engineer",
+        "Human-Computer Interaction Specialist",
+        "Robotics Engineer"
+      ],
+      "skills": [
+        "Programming",
+        "Data Analysis",
+        "Machine Learning",
+        "Cognitive Modeling",
+        "Problem Solving",
+        "Research Skills"
+      ],
+      "keywords": [
+        "Cognitive Science",
+        "Artificial Intelligence",
+        "Machine Learning",
+        "Data Science",
+        "Human-Computer Interaction",
+        "Neuroscience"
+      ]
+    },
+    {
+      "name": "BSc Economics",
+      "description": "The BSc Economics program at Tilburg University provides a thorough understanding of economic principles and their application in real-world scenarios. The program covers microeconomics, macroeconomics, and econometrics, preparing students for careers in economic analysis, policy advising, and financial consulting.",
+      "subjects": [
+        "Microeconomics",
+        "Macroeconomics",
+        "Econometrics",
+        "Mathematics for Economists",
+        "Statistics",
+        "Public Economics",
+        "International Economics",
+        "Development Economics",
+        "Behavioral Economics",
+        "Financial Markets",
+        "Economic Policy",
+        "Game Theory"
+      ],
+      "careers": [
+        "Economic Analyst",
+        "Policy Advisor",
+        "Financial Consultant",
+        "Market Researcher",
+        "Investment Analyst",
+        "Economist"
+      ],
+      "skills": [
+        "Analytical Thinking",
+        "Quantitative Analysis",
+        "Problem Solving",
+        "Data Interpretation",
+        "Research Skills",
+        "Critical Thinking"
+      ],
+      "keywords": [
+        "Economics",
+        "Microeconomics",
+        "Macroeconomics",
+        "Econometrics",
+        "Economic Policy",
+        "Financial Markets"
+      ]
+    },
+    {
+      "name": "BA Liberal Arts and Sciences",
+      "description": "The BA Liberal Arts and Sciences program at Tilburg University offers a broad and interdisciplinary education, allowing students to explore various fields such as humanities, social sciences, and natural sciences. The program emphasizes critical thinking, creativity, and global awareness, preparing students for diverse career paths.",
+      "subjects": [
+        "Introduction to Liberal Arts and Sciences",
+        "Philosophy",
+        "History",
+        "Cultural Studies",
+        "Political Science",
+        "Sociology",
+        "Psychology",
+        "Economics",
+        "Environmental Studies",
+        "Science and Technology",
+        "Research Methods",
+        "Ethics"
+      ],
+      "careers": [
+        "Policy Advisor",
+        "Researcher",
+        "Journalist",
+        "Consultant",
+        "Educator",
+        "Cultural Manager"
+      ],
+      "skills": [
+        "Critical Thinking",
+        "Interdisciplinary Analysis",
+        "Research Skills",
+        "Communication",
+        "Problem Solving",
+        "Cultural Awareness"
+      ],
+      "keywords": [
+        "Liberal Arts",
+        "Interdisciplinary Studies",
+        "Humanities",
+        "Social Sciences",
+        "Critical Thinking",
+        "Global Awareness"
+      ]
+    },
+    {
+      "name": "BSc Data Science",
+      "description": "The BSc Data Science program at Tilburg University equips students with the skills to analyze and interpret complex data. The program combines computer science, statistics, and domain knowledge to prepare students for careers in data analysis, machine learning, and data-driven decision-making.",
+      "subjects": [
+        "Introduction to Data Science",
+        "Programming for Data Science",
+        "Statistics",
+        "Machine Learning",
+        "Data Mining",
+        "Big Data Technologies",
+        "Data Visualization",
+        "Database Management",
+        "Ethics in Data Science",
+        "Predictive Modeling",
+        "Business Analytics",
+        "Artificial Intelligence"
+      ],
+      "careers": [
+        "Data Analyst",
+        "Data Scientist",
+        "Machine Learning Engineer",
+        "Business Analyst",
+        "Data Engineer",
+        "AI Specialist"
+      ],
+      "skills": [
+        "Data Analysis",
+        "Programming",
+        "Statistical Analysis",
+        "Machine Learning",
+        "Problem Solving",
+        "Data Visualization"
+      ],
+      "keywords": [
+        "Data Science",
+        "Machine Learning",
+        "Big Data",
+        "Data Analysis",
+        "Artificial Intelligence",
+        "Business Analytics"
+      ]
+    }
+  ]
+}
