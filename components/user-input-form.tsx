@@ -11,7 +11,9 @@ export function UserInputForm({ onSubmit }: UserInputFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit(userInput)
+    if (userInput.trim()) {
+      onSubmit(userInput)
+    }
   }
 
   return (
@@ -22,7 +24,7 @@ export function UserInputForm({ onSubmit }: UserInputFormProps) {
         onChange={(e) => setUserInput(e.target.value)}
         className="min-h-[150px]"
       />
-      <Button type="submit">Find Matching Programs</Button>
+      <Button type="submit" disabled={!userInput.trim()}>Find Matching Programs</Button>
     </form>
   )
 }
