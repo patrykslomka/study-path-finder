@@ -1,61 +1,75 @@
-import { ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-import natural from 'natural';
+import { ClassValue, clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
 
-// Utility function for combining Tailwind CSS classes
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return twMerge(clsx(inputs))
 }
 
-// Text processing utilities
-const tokenizer = new natural.WordTokenizer();
-const stemmer = natural.PorterStemmer;
-
-export function tokenizeAndStem(text: string): string[] {
-  const tokens = tokenizer.tokenize(text.toLowerCase());
-  return tokens ? tokens.map(token => stemmer.stem(token)) : [];
+// Simple stemmer implementation (Porter's algorithm simplified)
+export function stemWord(word: string): string {
+  return word.toLowerCase()
+    .replace(/(?:s|es|ed|ing|ly)$/, '')
 }
 
-// Function to remove stopwords
-const stopwords = new Set(natural.stopwords);
+// Simplified tokenizer
+export function tokenize(text: string): string[] {
+  return text.toLowerCase()
+    .replace(/[^\w\s]/g, ' ')
+    .split(/\s+/)
+    .filter(word => word.length > 0)
+}
+
+// Domain-specific stopwords
+const stopwords = new Set([
+  'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from',
+  'has', 'he', 'in', 'is', 'it', 'its', 'of', 'on', 'that', 'the',
+  'to', 'was', 'were', 'will', 'with', 'would', 'like', 'want',
+  'interested', 'looking', 'i', 'my', 'me', 'we', 'our'
+])
+
 export function removeStopwords(tokens: string[]): string[] {
-  return tokens.filter(token => !stopwords.has(token));
+  return tokens.filter(token => !stopwords.has(token))
 }
 
-// Function to calculate TF-IDF
-export function calculateTfIdf(tokens: string[], documents: string[][] = []): number[] {
-  const tfidf = new natural.TfIdf();
-
-  tfidf.addDocument(tokens);
-  documents.forEach(doc => {
-    tfidf.addDocument(doc);
-  });
-
-  return tokens.map(token => tfidf.tfidf(token, 0));
+// Keyword importance weights
+const keywordWeights: Record<string, number> = {
+  'entrepreneur': 2.0,
+  'business': 1.8,
+  'startup': 2.0,
+  'innovation': 1.5,
+  'create': 1.5,
+  'own': 2.0,
+  'start': 1.5,
+  'management': 1.0,
+  'international': 0.8,
+  'law': 0.7
 }
 
-// Function to calculate cosine similarity
-export function cosineSimilarity(vec1: number[], vec2: number[]): number {
-  const dotProduct = vec1.reduce((sum, val, i) => sum + val * vec2[i], 0);
-  const magnitude1 = Math.sqrt(vec1.reduce((sum, val) => sum + val * val, 0));
-  const magnitude2 = Math.sqrt(vec2.reduce((sum, val) => sum + val * val, 0));
-
-  if (magnitude1 === 0 || magnitude2 === 0) return 0;
-
-  return dotProduct / (magnitude1 * magnitude2);
+export function calculateSimilarity(text1: string, text2: string): number {
+  const tokens1 = new Set(removeStopwords(tokenize(text1)).map(stemWord))
+  const tokens2 = new Set(removeStopwords(tokenize(text2)).map(stemWord))
+  
+  let score = 0
+  tokens1.forEach(token => {
+    if (tokens2.has(token)) {
+      score += keywordWeights[token] || 1.0
+    }
+  })
+  
+  return score / (Math.sqrt(tokens1.size) * Math.sqrt(tokens2.size))
 }
 
-// Function to normalize text (remove punctuation, lowercase, etc.)
-export function normalizeText(text: string): string {
-  return text.toLowerCase().replace(/[^\w\s]/g, '');
-}
-
-// Function to extract keywords from text
-export function extractKeywords(text: string, topN: number = 5): string[] {
-  const tokens = tokenizeAndStem(normalizeText(text));
-  const filteredTokens = removeStopwords(tokens);
-
-  const freqDist = natural.FrequencyDist.fromArray(filteredTokens);
-  return freqDist.getMostFrequent(topN).map(([word]) => word);
+export function calculateContextScore(text: string, context: string[]): number {
+  const tokens = new Set(removeStopwords(tokenize(text)).map(stemWord))
+  const contextTokens = new Set(context.flatMap(c => removeStopwords(tokenize(c)).map(stemWord)))
+  
+  let matches = 0
+  tokens.forEach(token => {
+    if (contextTokens.has(token)) {
+      matches += keywordWeights[token] || 1.0
+    }
+  })
+  
+  return matches / tokens.size
 }
 

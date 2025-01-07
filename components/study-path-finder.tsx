@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { UserInputForm } from '../components/user-input-form'
-import { ProgramResults } from '../components/program-results'
+import { UserInputForm } from './user-input-form'
+import { ProgramResults } from './program-results'
+import { Loader2 } from 'lucide-react'
 
 interface Program {
   name: string;
@@ -23,7 +24,6 @@ export default function StudyPathFinder() {
     setIsLoading(true)
     setError(null)
     setUserInput(input)
-    console.log('Submitting user input:', input)
     try {
       const response = await fetch('/api/match-programs', {
         method: 'POST',
@@ -33,14 +33,11 @@ export default function StudyPathFinder() {
         body: JSON.stringify({ userInput: input }),
       })
 
-      console.log('Response status:', response.status)
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
 
       const data = await response.json()
-      console.log('Received data:', data)
 
       if (!data.matchingPrograms || !Array.isArray(data.matchingPrograms)) {
         throw new Error('Invalid response format')
@@ -56,20 +53,25 @@ export default function StudyPathFinder() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Tilburg University Study Path Finder</h1>
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <h1 className="text-4xl font-bold mb-8 text-center">Tilburg University Study Path Finder</h1>
       <UserInputForm onSubmit={handleSubmit} />
-      {isLoading && <p className="mt-4">Finding matching programs...</p>}
-      {error && <p className="mt-4 text-red-500">{error}</p>}
+      {isLoading && (
+        <div className="flex justify-center items-center mt-8">
+          <Loader2 className="mr-2 h-8 w-8 animate-spin" />
+          <p className="text-lg">Finding matching programs...</p>
+        </div>
+      )}
+      {error && <p className="mt-8 text-red-500 text-center">{error}</p>}
       {!isLoading && !error && (
         <>
           {matchingPrograms.length > 0 ? (
             <>
-              <h2 className="text-2xl font-semibold mt-8 mb-4">Matching Programs for "{userInput}":</h2>
+              <h2 className="text-2xl font-semibold mt-12 mb-6 text-center">Matching Programs for "{userInput}"</h2>
               <ProgramResults programs={matchingPrograms} />
             </>
-          ) : (
-            <p className="mt-4">No specific matches found for "{userInput}". Try adjusting your input or using more specific terms.</p>
+          ) : userInput && (
+            <p className="mt-8 text-center">No specific matches found for "{userInput}". Try adjusting your input or using more specific terms.</p>
           )}
         </>
       )}
