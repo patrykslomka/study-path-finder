@@ -364,6 +364,164 @@
         "Artificial Intelligence",
         "Business Analytics"
       ]
-    }
+    },
+    {
+      "name": "BSc Econometrics and Operations Research",
+      "description": "The BSc Econometrics and Operations Research program at Tilburg University combines mathematics, statistics, and computer science to solve complex economic and business challenges. It prepares students for careers in data-driven decision-making, quantitative analysis, and operations optimization across various industries.",
+      "subjects": [
+        "Linear Algebra",
+        "Calculus",
+        "Probability Theory",
+        "Statistics",
+        "Microeconomics",
+        "Macroeconomics",
+        "Operations Research",
+        "Optimization Techniques",
+        "Econometrics",
+        "Dynamic Systems",
+        "Game Theory",
+        "Data Science",
+        "Programming for Econometrics",
+        "Machine Learning Applications",
+        "Stochastic Processes",
+        "Mathematical Economics",
+        "Decision Making under Uncertainty",
+        "Simulation Modeling"
+      ],
+      "careers": [
+        "Data Scientist",
+        "Quantitative Analyst",
+        "Operations Manager",
+        "Risk Analyst",
+        "Econometrician",
+        "Actuary",
+        "Supply Chain Analyst",
+        "Optimization Consultant",
+        "Researcher"
+      ],
+      "skills": [
+        "Mathematical Modeling",
+        "Statistical Analysis",
+        "Programming",
+        "Data Interpretation",
+        "Optimization Techniques",
+        "Problem Solving",
+        "Decision Analysis",
+        "Critical Thinking"
+      ],
+      "keywords": [
+        "Econometrics",
+        "Operations Research",
+        "Quantitative Analysis",
+        "Optimization",
+        "Mathematics",
+        "Statistics",
+        "Decision Making",
+        "Data Science"
+      ]
+    },
+    {
+      "name": "BSc Global Management of Social Issues",
+      "description": "The BSc Global Management of Social Issues at Tilburg University prepares students to tackle complex societal challenges through the integration of management, sociology, and psychology. The program focuses on global issues such as poverty, migration, climate change, and inequality, equipping students with interdisciplinary knowledge and practical skills.",
+      "subjects": [
+        "Global Challenges",
+        "Sociology",
+        "Psychology",
+        "Management and Organization",
+        "Sustainable Development Goals (SDGs)",
+        "Social Innovation",
+        "Statistics",
+        "Cultural Diversity",
+        "Human Resource Management",
+        "Corporate Social Responsibility",
+        "Ethics in Management",
+        "Research Methods",
+        "Project Management",
+        "Strategic Management",
+        "Social Policy Analysis",
+        "Global Governance"
+      ],
+      "careers": [
+        "Sustainability Consultant",
+        "Social Policy Advisor",
+        "Corporate Social Responsibility Manager",
+        "Project Manager",
+        "Social Innovation Specialist",
+        "International Development Consultant",
+        "Humanitarian Aid Worker",
+        "Diversity and Inclusion Specialist",
+        "Researcher"
+      ],
+      "skills": [
+        "Interdisciplinary Thinking",
+        "Problem Solving",
+        "Cultural Sensitivity",
+        "Leadership",
+        "Research Skills",
+        "Strategic Planning",
+        "Team Collaboration",
+        "Ethical Decision Making"
+      ],
+      "keywords": [
+        "Global Issues",
+        "Social Innovation",
+        "Sustainability",
+        "Cultural Diversity",
+        "Social Policy",
+        "Ethics",
+        "Management",
+        "Sustainable Development Goals"
+      ]
+    },
+    {
+      "name": "BA Digital Culture",
+      "description": "The BA Digital Culture program at Tilburg University explores the impact of digital technologies on society, culture, and the arts. The program combines theoretical insights with practical skills, preparing students for careers in media, cultural industries, and digital innovation.",
+      "subjects": [
+        "Introduction to Digital Culture",
+        "Media and Communication Theories",
+        "Digital Media Design",
+        "Cultural Studies",
+        "Digital Storytelling",
+        "Human-Computer Interaction",
+        "Visual Culture",
+        "Programming for Digital Applications",
+        "Ethics of Digital Technologies",
+        "Social Media Analysis",
+        "Game Studies",
+        "Digital Humanities",
+        "Big Data and Society",
+        "Critical Data Studies",
+        "Digital Innovation and Creativity"
+      ],
+      "careers": [
+        "Digital Media Specialist",
+        "Content Strategist",
+        "Cultural Analyst",
+        "Social Media Manager",
+        "UX Designer",
+        "Digital Marketing Consultant",
+        "Media Researcher",
+        "Creative Industry Professional",
+        "Digital Policy Advisor"
+      ],
+      "skills": [
+        "Digital Communication",
+        "Critical Thinking",
+        "Media Analysis",
+        "Creative Design",
+        "Cultural Awareness",
+        "Research Skills",
+        "Storytelling",
+        "Problem Solving"
+      ],
+      "keywords": [
+        "Digital Culture",
+        "Media Studies",
+        "Cultural Innovation",
+        "Digital Storytelling",
+        "Human-Computer Interaction",
+        "Ethics in Technology"
+      ]
+    }   
   ]
 }
