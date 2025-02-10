@@ -42,7 +42,12 @@ const keywordWeights: Record<string, number> = {
   'start': 1.5,
   'management': 1.0,
   'international': 0.8,
-  'law': 0.7
+  'law': 0.7,
+  'technology': 1.5,
+  'data': 1.5,
+  'psychology': 1.2,
+  'research': 1.0,
+  'analysis': 1.2
 }
 
 export function calculateSimilarity(text1: string, text2: string): number {
@@ -70,6 +75,5 @@ export function calculateContextScore(text: string, context: string[]): number {
     }
   })
   
-  return matches / tokens.size
+  return matches / Math.max(1, tokens.size)
 }
-
