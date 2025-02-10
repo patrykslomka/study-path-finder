@@ -1,33 +1,17 @@
-'use client'
+import { StudyPathFinder } from "@/components/study-path-finder"
 
-import { useState } from 'react'
-import { UserInputForm } from '@/components/user-input-form'
-import { ProgramResults } from '@/components/program-results'
-import type { Program } from '@/types/program'
-
-export default function Home() {
-  const [matchingPrograms, setMatchingPrograms] = useState<Program[]>([])
-  const [error, setError] = useState<string | null>(null)
-
-  const handleResults = (programs: Program[]) => {
-    setError(null)
-    setMatchingPrograms(programs)
-  }
-
+export default function Page() {
   return (
-    <main className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-4xl font-bold mb-8 text-center">
-        Tilburg University Study Path Finder
-      </h1>
-      <UserInputForm onSubmit={handleResults} />
-      {error && (
-        <p className="mt-4 text-red-500 text-center">{error}</p>
-      )}
-      {matchingPrograms.length > 0 && (
-        <div className="mt-8">
-          <ProgramResults programs={matchingPrograms} />
+    <main className="container mx-auto p-4 min-h-screen">
+      <div className="max-w-4xl mx-auto space-y-8">
+        <div className="text-center space-y-2">
+          <h1 className="text-4xl font-bold tracking-tight">Find Your Study Path</h1>
+          <p className="text-muted-foreground text-lg">
+            Discover the perfect bachelor&apos;s program at Tilburg University based on your interests and goals
+          </p>
         </div>
-      )}
+        <StudyPathFinder />
+      </div>
     </main>
   )
 }

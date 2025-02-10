@@ -42,7 +42,9 @@
         "Global Marketing Manager",
         "Financial Analyst",
         "Project Manager",
-        "Entrepreneur"
+        "Entrepreneur",
+        "Corporate Strategist",
+        "Investment Banker"
       ],
       "skills": [
         "Cross-Cultural Communication",
@@ -52,7 +54,9 @@
         "Research Skills",
         "Leadership",
         "Problem Solving",
-        "Data Analysis"
+        "Data Analysis",
+        "Financial Modeling",
+        "Market Analysis"
       ],
       "keywords": [
         "International Business",
@@ -61,7 +65,9 @@
         "Business Strategy",
         "Finance",
         "Innovation",
-        "Technology Management"
+        "Technology Management",
+        "Marketing",
+        "Corporate Governance"
       ]
     },
     {
@@ -92,7 +98,9 @@
         "Startup Founder",
         "Business Development Manager",
         "Venture Capital Analyst",
-        "Corporate Innovator"
+        "Corporate Innovator",
+        "Social Entrepreneur",
+        "Tech Startup Advisor"
       ],
       "skills": [
         "Opportunity Recognition",
@@ -102,7 +110,9 @@
         "Strategic Management",
         "Leadership",
         "Problem Solving",
-        "Networking"
+        "Networking",
+        "Pitching Ideas",
+        "Risk Management"
       ],
       "keywords": [
         "Entrepreneurship",
@@ -110,7 +120,11 @@
         "Startup",
         "Innovation Management",
         "Strategic Planning",
-        "Social Entrepreneurship"
+        "Social Entrepreneurship",
+        "Venture Capital",
+        "Tech Innovation",
+        "Business Models",
+        "Corporate Innovation"
       ]
     },
     {
@@ -136,7 +150,10 @@
         "Policy Advisor",
         "Diplomat",
         "Corporate Counsel",
-        "Human Rights Advocate"
+        "Human Rights Advocate",
+        "International Arbitrator",
+        "Legal Analyst",
+        "Compliance Officer"
       ],
       "skills": [
         "Legal Analysis",
@@ -144,7 +161,9 @@
         "Critical Thinking",
         "Research Skills",
         "Negotiation",
-        "Problem Solving"
+        "Problem Solving",
+        "Contract Drafting",
+        "Policy Development"
       ],
       "keywords": [
         "Global Law",
@@ -152,7 +171,10 @@
         "Human Rights",
         "Corporate Law",
         "Legal Systems",
-        "Environmental Law"
+        "Environmental Law",
+        "Trade Law",
+        "Legal Ethics",
+        "Conflict Resolution"
       ]
     },
     {
@@ -178,7 +200,10 @@
         "Human Resources Specialist",
         "Market Research Analyst",
         "Educational Psychologist",
-        "Neuropsychologist"
+        "Neuropsychologist",
+        "Behavioral Therapist",
+        "Social Worker",
+        "Academic Researcher"
       ],
       "skills": [
         "Analytical Thinking",
@@ -186,7 +211,9 @@
         "Communication",
         "Empathy",
         "Problem Solving",
-        "Data Analysis"
+        "Data Analysis",
+        "Behavioral Assessment",
+        "Counseling Techniques"
       ],
       "keywords": [
         "Psychology",
@@ -194,7 +221,10 @@
         "Mental Health",
         "Cognitive Processes",
         "Clinical Psychology",
-        "Research"
+        "Research",
+        "Neuropsychology",
+        "Behavioral Science",
+        "Counseling"
       ]
     },
     {
@@ -220,7 +250,9 @@
         "Cognitive Scientist",
         "Machine Learning Engineer",
         "Human-Computer Interaction Specialist",
-        "Robotics Engineer"
+        "Robotics Engineer",
+        "AI Ethicist",
+        "Natural Language Processing Specialist"
       ],
       "skills": [
         "Programming",
@@ -228,7 +260,9 @@
         "Machine Learning",
         "Cognitive Modeling",
         "Problem Solving",
-        "Research Skills"
+        "Research Skills",
+        "Neural Networks",
+        "Deep Learning"
       ],
       "keywords": [
         "Cognitive Science",
@@ -236,7 +270,10 @@
         "Machine Learning",
         "Data Science",
         "Human-Computer Interaction",
-        "Neuroscience"
+        "Neuroscience",
+        "Natural Language Processing",
+        "Robotics",
+        "AI Ethics"
       ]
     },
     {
@@ -262,7 +299,9 @@
         "Financial Consultant",
         "Market Researcher",
         "Investment Analyst",
-        "Economist"
+        "Economist",
+        "Development Economist",
+        "Financial Economist"
       ],
       "skills": [
         "Analytical Thinking",
@@ -270,7 +309,9 @@
         "Problem Solving",
         "Data Interpretation",
         "Research Skills",
-        "Critical Thinking"
+        "Critical Thinking",
+        "Economic Modeling",
+        "Policy Analysis"
       ],
       "keywords": [
         "Economics",
@@ -278,7 +319,10 @@
         "Macroeconomics",
         "Econometrics",
         "Economic Policy",
-        "Financial Markets"
+        "Financial Markets",
+        "Behavioral Economics",
+        "Game Theory",
+        "Development Economics"
       ]
     },
     {
@@ -304,7 +348,9 @@
         "Journalist",
         "Consultant",
         "Educator",
-        "Cultural Manager"
+        "Cultural Manager",
+        "Public Relations Specialist",
+        "Nonprofit Coordinator"
       ],
       "skills": [
         "Critical Thinking",
@@ -312,7 +358,9 @@
         "Research Skills",
         "Communication",
         "Problem Solving",
-        "Cultural Awareness"
+        "Cultural Awareness",
+        "Creative Writing",
+        "Public Speaking"
       ],
       "keywords": [
         "Liberal Arts",
@@ -320,7 +368,10 @@
         "Humanities",
         "Social Sciences",
         "Critical Thinking",
-        "Global Awareness"
+        "Global Awareness",
+        "Cultural Studies",
+        "Ethics",
+        "Research"
       ]
     },
     {
@@ -346,7 +397,9 @@
         "Machine Learning Engineer",
         "Business Analyst",
         "Data Engineer",
-        "AI Specialist"
+        "AI Specialist",
+        "Data Visualization Specialist",
+        "Big Data Consultant"
       ],
       "skills": [
         "Data Analysis",
@@ -354,7 +407,9 @@
         "Statistical Analysis",
         "Machine Learning",
         "Problem Solving",
-        "Data Visualization"
+        "Data Visualization",
+        "Database Management",
+        "Predictive Modeling"
       ],
       "keywords": [
         "Data Science",
@@ -362,7 +417,11 @@
         "Big Data",
         "Data Analysis",
         "Artificial Intelligence",
-        "Business Analytics"
+        "Business Analytics",
+        "Python",
+        "R Programming",
+        "SQL",
+        "Data Visualization Tools"
       ]
     },
     {
@@ -417,7 +476,8 @@
         "Mathematics",
         "Statistics",
         "Decision Making",
-        "Data Science"
+        "Data Science",
+        "Game Theory"
       ]
     },
     {
@@ -470,7 +530,8 @@
         "Social Policy",
         "Ethics",
         "Management",
-        "Sustainable Development Goals"
+        "Sustainable Development Goals",
+        "Global Governance"
       ]
     },
     {
@@ -520,8 +581,200 @@
         "Cultural Innovation",
         "Digital Storytelling",
         "Human-Computer Interaction",
-        "Ethics in Technology"
+        "Ethics in Technology",
+        "Social Media",
+        "Digital Humanities"
       ]
-    }   
+    },
+    {
+      "name": "BSc Human Resource Studies: People Management",
+      "description": "The BSc Human Resource Studies: People Management at Tilburg University combines insights from psychology, sociology, economics, and management to understand and optimize human behavior in organizations. The program prepares students for careers in HR, organizational development, and consultancy.",
+      "subjects": [
+        "Introduction to Human Resource Studies",
+        "Organizational Behavior",
+        "Psychology at Work",
+        "Sociology of Work and Organizations",
+        "Business Economics",
+        "Statistics",
+        "Employment Law",
+        "Strategic HRM",
+        "Talent Management",
+        "Leadership and Coaching",
+        "Diversity and Inclusion",
+        "Digitalization and HR Analytics",
+        "Ethics in HRM",
+        "Employee Well-Being",
+        "Research Methods in HRM"
+      ],
+      "careers": [
+        "HR Consultant",
+        "Talent Acquisition Specialist",
+        "Organizational Development Manager",
+        "Diversity & Inclusion Officer",
+        "Compensation & Benefits Specialist",
+        "HR Analyst",
+        "Learning & Development Manager",
+        "Employee Engagement Specialist"
+      ],
+      "skills": [
+        "People Management",
+        "Strategic Thinking",
+        "Organizational Behavior Analysis",
+        "Talent Development",
+        "Diversity and Inclusion",
+        "HR Analytics",
+        "Communication",
+        "Leadership"
+      ],
+      "keywords": [
+        "Human Resource Management",
+        "People Management",
+        "Talent Development",
+        "Diversity & Inclusion",
+        "HR Analytics",
+        "Employee Well-Being",
+        "Organizational Behavior",
+        "Strategic HRM"
+      ]
+    },
+    {
+      "name": "BSc International Sociology",
+      "description": "The BSc International Sociology at Tilburg University provides insights into global social issues, exploring topics such as inequality, migration, and cultural diversity. The program equips students with analytical and research skills to understand and address contemporary social challenges.",
+      "subjects": [
+        "Introduction to Sociology",
+        "Research Methods in Social Sciences",
+        "Statistics for Sociologists",
+        "Social Inequality",
+        "Migration and Integration",
+        "Globalization and Society",
+        "Cultural Diversity",
+        "Political Sociology",
+        "Social Network Analysis",
+        "Sociology of Organizations",
+        "Ethics in Social Research",
+        "Social Policy and Welfare States"
+      ],
+      "careers": [
+        "Social Researcher",
+        "Policy Advisor",
+        "NGO Consultant",
+        "Community Development Officer",
+        "Human Rights Advocate",
+        "Data Analyst in Social Sciences",
+        "Urban Planner",
+        "Public Policy Analyst"
+      ],
+      "skills": [
+        "Social Analysis",
+        "Research Methodology",
+        "Critical Thinking",
+        "Data Interpretation",
+        "Cross-Cultural Communication",
+        "Policy Analysis",
+        "Community Engagement",
+        "Advocacy"
+      ],
+      "keywords": [
+        "Sociology",
+        "Globalization",
+        "Social Inequality",
+        "Migration",
+        "Cultural Diversity",
+        "Social Policy",
+        "Human Rights",
+        "Social Networks"
+      ]
+    },
+    {
+      "name": "BA Theology",
+      "description": "The BA Theology at Tilburg University explores religious traditions, beliefs, and ethical issues from a historical and contemporary perspective. The program prepares students for careers in academia, religious organizations, and social services.",
+      "subjects": [
+        "Introduction to Theology",
+        "Biblical Studies",
+        "Church History",
+        "Ethics and Morality",
+        "Religious Philosophy",
+        "Comparative Religion",
+        "Pastoral Care",
+        "Theology and Society",
+        "Spirituality and Worship",
+        "Research Methods in Theology"
+      ],
+      "careers": [
+        "Religious Leader",
+        "Ethics Consultant",
+        "Chaplain",
+        "Social Worker",
+        "Academician in Theology",
+        "Cultural Advisor",
+        "Interfaith Coordinator",
+        "Religious Educator"
+      ],
+      "skills": [
+        "Critical Thinking",
+        "Ethical Analysis",
+        "Historical Research",
+        "Public Speaking",
+        "Interfaith Communication",
+        "Pastoral Care",
+        "Theological Writing",
+        "Community Leadership"
+      ],
+      "keywords": [
+        "Theology",
+        "Religious Studies",
+        "Ethics",
+        "Spirituality",
+        "Comparative Religion",
+        "Church History",
+        "Pastoral Care",
+        "Interfaith Dialogue"
+      ]
+    },
+    {
+      "name": "BSc Leisure Studies",
+      "description": "The BSc Leisure Studies at Tilburg University examines the role of leisure in society and its impact on individual well-being, economy, and culture. The program prepares students for careers in leisure management, tourism, and event planning.",
+      "subjects": [
+        "Introduction to Leisure Studies",
+        "Sociology of Leisure",
+        "Psychology of Leisure",
+        "Tourism Management",
+        "Event Planning and Management",
+        "Sustainable Leisure Development",
+        "Digital Innovation in Leisure",
+        "Cultural Aspects of Leisure",
+        "Sports and Recreation Management"
+      ],
+      "careers": [
+        "Event Manager",
+        "Tourism Consultant",
+        "Recreation Manager",
+        "Cultural Programmer",
+        "Leisure Policy Advisor",
+        "Sports Manager",
+        "Tourism Marketing Specialist",
+        "Event Coordinator"
+      ],
+      "skills": [
+        "Project Management",
+        "Strategic Planning",
+        "Creativity",
+        "Cultural Sensitivity",
+        "Event Coordination",
+        "Marketing in Leisure",
+        "Customer Experience Management",
+        "Tourism Development"
+      ],
+      "keywords": [
+        "Leisure Studies",
+        "Tourism",
+        "Event Management",
+        "Cultural Programming",
+        "Sustainable Leisure",
+        "Sports Management",
+        "Recreation",
+        "Tourism Marketing"
+      ]
+    }
   ]
 }

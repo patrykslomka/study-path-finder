@@ -1,34 +1,21 @@
-import { NextResponse } from 'next/server'
-import { matchPrograms } from '@/lib/match-programs'
-import programs from '@/lib/programs.json'
+import { NextResponse } from "next/server"
+import { matchPrograms } from "@/lib/match-programs"
+import programsData from "@/lib/programs.json"
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
-    const { userInput } = await req.json()
+    const { weightedKeywords, userInput } = await request.json()
 
-    if (!userInput || typeof userInput !== 'string') {
-      return NextResponse.json(
-        { error: 'Invalid input' },
-        { status: 400 }
-      )
+    if (!weightedKeywords && !userInput) {
+      return NextResponse.json({ error: "Either weighted keywords or user input is required" }, { status: 400 })
     }
 
-    const matchingPrograms = matchPrograms(userInput, programs.programs)
+    const matchingPrograms = matchPrograms(weightedKeywords || userInput, programsData.programs)
 
-    return NextResponse.json({
-      matchingPrograms,
-      message: 'Successfully matched programs'
-    })
-
+    return NextResponse.json({ matchingPrograms })
   } catch (error) {
-    console.error('Error matching programs:', error)
-    return NextResponse.json(
-      { 
-        error: 'An error occurred while processing your request',
-        matchingPrograms: []
-      },
-      { status: 500 }
-    )
+    console.error("Error in match-programs route:", error)
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
 
