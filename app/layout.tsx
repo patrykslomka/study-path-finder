@@ -1,22 +1,23 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import React, { ReactNode } from 'react';
 
-const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Tilburg University Study Path Finder',
-  description: 'Find the best study program for you at Tilburg University',
+interface LayoutProps {
+    children: ReactNode;
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  )
-}
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <header style={{ background: '#282c34', padding: '1rem', color: 'white' }}>
+                <h1>Study Path Finder</h1>
+            </header>
+            <main style={{ flex: 1, padding: '1rem' }}>
+                {children} {/* This will correctly render content */}
+            </main>
+            <footer style={{ background: '#282c34', padding: '1rem', color: 'white', textAlign: 'center' }}>
+                <p>&copy; 2025 Study Path Finder</p>
+            </footer>
+        </div>
+    );
+};
+
+export default Layout;

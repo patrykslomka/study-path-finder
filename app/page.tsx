@@ -1,18 +1,46 @@
-import { StudyPathFinder } from "@/components/study-path-finder"
+// filepath: /c:/Users/patry/Desktop/Path-finder/study-path-finder/app/page.tsx
+"use client";
 
-export default function Page() {
-  return (
-    <main className="container mx-auto p-4 min-h-screen">
-      <div className="max-w-4xl mx-auto space-y-8">
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight">Find Your Study Path</h1>
-          <p className="text-muted-foreground text-lg">
-            Discover the perfect bachelor&apos;s program at Tilburg University based on your interests and goals
-          </p>
+import React, { useState } from "react";
+import { searchPrograms } from "../frontend/api/search";
+
+const Page = () => {
+    const [query, setQuery] = useState("");
+    const [results, setResults] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const handleSearch = async () => {
+        setLoading(true);  // Show "Loading..."
+        try {
+            const data = await searchPrograms(query);
+            setResults(data.programs || []);
+        } catch (error) {
+            console.error("Search failed:", error);
+        }
+        setLoading(false);  // Hide "Loading..."
+    };
+
+    return (
+        <div>
+            <h1>Study Path Finder</h1>
+            <input
+                type="text"
+                placeholder="Enter your study interests..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+            />
+            <button onClick={handleSearch}>Search</button>
+
+            <div>
+                {results.map((program, index) => (
+                    <div key={index}>
+                        <h2>{program.name}</h2>
+                        <p>{program.description}</p>
+                    </div>
+                ))}
+            </div>
         </div>
-        <StudyPathFinder />
-      </div>
-    </main>
-  )
-}
+    );
+};
 
+export default Page;
