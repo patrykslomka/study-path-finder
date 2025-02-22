@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronRight, Loader2, Search, Sparkles, Target, ArrowLeft, Download, Mail } from "lucide-react"
+import * as React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronRight, Loader2, Search, Target, ArrowLeft, Sparkles } from "lucide-react"; // Removed unused icons
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Textarea } from "@/components/ui/textarea"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Progress } from "@/components/ui/progress"
-import { ProgramResults } from "./program-results"
-import type { Program } from "@/types/program"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Textarea } from "@/components/ui/textarea";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Progress } from "@/components/ui/progress";
+import { ProgramResults } from "./program-results";
+import type { Program } from "@/types/program";
 
 const GUIDED_QUESTIONS = [
   {
@@ -21,22 +21,10 @@ const GUIDED_QUESTIONS = [
     weight: 0.4,
     options: [
       { id: "business", label: "Business & Entrepreneurship", keywords: ["business", "entrepreneurship", "economics"] },
-      { id: "ai", label: "Artificial Intelligence", keywords: ["artificial intelligence", "cognitive science"] },
-      { id: "data", label: "Data Science", keywords: ["data science", "statistics", "analytics"] },
-      { id: "cybersecurity", label: "Cybersecurity", keywords: ["cybersecurity", "information security"] },
-      { id: "software", label: "Software Development", keywords: ["software development", "programming"] },
+      { id: "technology", label: "Technology (AI, Data, Software)", keywords: ["artificial intelligence", "data science", "statistics", "analytics", "software development", "programming", "cognitive science", "cybersecurity", "information security"] },
       { id: "law", label: "Law & Governance", keywords: ["law", "governance", "global law"] },
-      {
-        id: "social",
-        label: "Social Sciences & Society",
-        keywords: ["sociology", "social issues", "global management"],
-      },
-      {
-        id: "people",
-        label: "People & Organizations",
-        keywords: ["human resources", "psychology", "organizational behavior"],
-      },
-      { id: "culture", label: "Culture & Leisure", keywords: ["digital culture", "leisure studies", "theology"] },
+      { id: "social", label: "Social Sciences & Impact", keywords: ["sociology", "social issues", "global management", "psychology", "human resources", "organizational behavior"] },
+      { id: "culture", label: "Culture, Media & Leisure", keywords: ["digital culture", "leisure studies", "theology", "media studies"] },
     ],
   },
   {
@@ -45,28 +33,10 @@ const GUIDED_QUESTIONS = [
     weight: 0.3,
     options: [
       { id: "entrepreneur", label: "Start my own business", keywords: ["entrepreneurship", "business innovation"] },
-      {
-        id: "corporate",
-        label: "Work in a large organization",
-        keywords: ["international business", "human resources", "economics"],
-      },
-      {
-        id: "research",
-        label: "Conduct research & analyze data",
-        keywords: ["econometrics", "cognitive science", "psychology", "data science"],
-      },
+      { id: "organization", label: "Work in organizations (business or international)", keywords: ["international business", "human resources", "economics", "global law", "international relations"] },
+      { id: "research", label: "Conduct research & analyze data", keywords: ["econometrics", "cognitive science", "psychology", "data science"] },
       { id: "social_impact", label: "Make a social impact", keywords: ["sociology", "global management", "theology"] },
-      {
-        id: "international",
-        label: "Work in international organizations",
-        keywords: ["global law", "international business", "international relations"],
-      },
-      { id: "academia", label: "Pursue academia/PhD", keywords: ["research", "academic", "phd"] },
-      {
-        id: "creative",
-        label: "Create and innovate in media & culture",
-        keywords: ["digital culture", "leisure studies"],
-      },
+      { id: "creative", label: "Create and innovate in media & culture", keywords: ["digital culture", "leisure studies"] },
     ],
   },
   {
@@ -74,27 +44,9 @@ const GUIDED_QUESTIONS = [
     question: "Which skills do you want to develop?",
     weight: 0.2,
     options: [
-      {
-        id: "analytical",
-        label: "Analytical & quantitative skills",
-        keywords: ["econometrics", "economics", "data science", "cognitive science"],
-      },
-      {
-        id: "creative",
-        label: "Creative & innovative thinking",
-        keywords: ["entrepreneurship", "digital culture", "leisure studies"],
-      },
-      { id: "people", label: "People & communication skills", keywords: ["human resources", "psychology", "theology"] },
-      {
-        id: "technical",
-        label: "Technical & digital skills",
-        keywords: ["data science", "artificial intelligence", "digital culture"],
-      },
-      {
-        id: "strategic",
-        label: "Decision-making & strategic thinking",
-        keywords: ["international business", "economics", "global law", "human resources"],
-      },
+      { id: "analytical_tech", label: "Analytical & technical skills", keywords: ["econometrics", "economics", "data science", "cognitive science", "artificial intelligence", "statistics", "programming"] },
+      { id: "creative", label: "Creative & innovative thinking", keywords: ["entrepreneurship", "digital culture", "leisure studies", "business innovation"] },
+      { id: "people", label: "People, communication & leadership skills", keywords: ["human resources", "psychology", "organizational behavior", "leadership"] },
     ],
   },
   {
@@ -102,130 +54,170 @@ const GUIDED_QUESTIONS = [
     question: "What type of learning experience suits you best?",
     weight: 0.1,
     options: [
-      {
-        id: "theory",
-        label: "Theory & research-based learning",
-        keywords: ["psychology", "theology", "sociology", "global law", "econometrics"],
-      },
-      {
-        id: "hands_on",
-        label: "Hands-on, project-based learning",
-        keywords: ["entrepreneurship", "business innovation", "leisure studies"],
-      },
-      {
-        id: "collaborative",
-        label: "Collaborative & social learning",
-        keywords: ["human resources", "global management", "digital culture"],
-      },
-      {
-        id: "global",
-        label: "International & global perspective",
-        keywords: ["global law", "international business", "international sociology"],
-      },
+      { id: "theory_practical", label: "Theory & practical learning", keywords: ["psychology", "theology", "sociology", "global law", "econometrics", "entrepreneurship", "business innovation", "leisure studies"] },
+      { id: "collaborative", label: "Collaborative & global learning", keywords: ["human resources", "global management", "digital culture", "international business", "international sociology"] },
     ],
   },
-]
+];
 
 export function StudyPathFinder() {
-  const [activeTab, setActiveTab] = React.useState("guided")
-  const [currentStep, setCurrentStep] = React.useState(0)
-  const [answers, setAnswers] = React.useState<Record<string, string>>({})
-  const [freeformInput, setFreeformInput] = React.useState("")
-  const [isLoading, setIsLoading] = React.useState(false)
-  const [matchingPrograms, setMatchingPrograms] = React.useState<Program[]>([])
-  const [error, setError] = React.useState<string | null>(null)
+  const [activeTab, setActiveTab] = React.useState("guided");
+  const [currentStep, setCurrentStep] = React.useState(0);
+  const [answers, setAnswers] = React.useState<Record<string, string>>({});
+  const [freeformInput, setFreeformInput] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [matchingPrograms, setMatchingPrograms] = React.useState<Program[]>([]);
+  const [error, setError] = React.useState<string | null>(null);
 
   const handleGuidedSubmit = async () => {
-    setIsLoading(true)
-    setError(null)
+    setIsLoading(true);
+    setError(null);
 
     try {
-      // Combine keywords from selected answers with weights
+      // Combine keywords from selected answers with weights, ensuring all IDs exist
       const weightedKeywords = GUIDED_QUESTIONS.flatMap((q) => {
-        const selectedOption = q.options.find((opt) => opt.id === answers[q.id])
-        return selectedOption?.keywords.map((keyword) => ({ keyword, weight: q.weight })) || []
-      })
+        const selectedOption = q.options.find((opt) => opt.id === answers[q.id]);
+        if (!selectedOption) {
+          console.warn(`No option found for ID ${q.id} with value ${answers[q.id]}`);
+        }
+        return selectedOption?.keywords.map((keyword) => ({ keyword, weight: q.weight })) || [];
+      });
+
+      console.log("Weighted Keywords for Guided Search:", weightedKeywords); // Debug log
+
+      if (weightedKeywords.length === 0) {
+        throw new Error("No keywords selected for matching");
+      }
 
       const response = await fetch("/api/match-programs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ weightedKeywords }),
-      })
+      });
 
-      if (!response.ok) throw new Error("Failed to fetch matching programs")
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Failed to fetch matching programs: ${response.status} - ${errorText}`);
+      }
 
-      const data = await response.json()
-      setMatchingPrograms(data.matchingPrograms)
-      setCurrentStep(GUIDED_QUESTIONS.length)
+      const data = await response.json();
+      console.log("API Response for Guided Search:", data); // Debug log
+      setMatchingPrograms(data.matchingPrograms || []);
+      setCurrentStep(GUIDED_QUESTIONS.length);
     } catch (err) {
-      setError("An error occurred while finding matching programs. Please try again.")
+      setError(`An error occurred while finding matching programs: ${err.message}`);
+      console.error("Guided Search Error:", err);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleFreeformSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!freeformInput.trim()) return
+    e.preventDefault();
+    if (!freeformInput.trim()) return;
 
-    setIsLoading(true)
-    setError(null)
+    setIsLoading(true);
+    setError(null);
 
     try {
-      const response = await fetch("/api/match-programs", {
+      // Step 1: Process with Ollama
+      const ollamaResponse = await fetch("/api/ollama-process", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userInput: freeformInput }),
-      })
+      });
 
-      if (!response.ok) throw new Error("Failed to fetch matching programs")
+      if (!ollamaResponse.ok) {
+        const errorText = await ollamaResponse.text();
+        throw new Error(`Failed to process with Ollama: ${ollamaResponse.status} - ${errorText}`);
+      }
 
-      const data = await response.json()
-      setMatchingPrograms(data.matchingPrograms)
+      const { keywords: weightedKeywords } = await ollamaResponse.json();
+      console.log("Weighted Keywords from Ollama:", weightedKeywords); // Debug log
+
+      // Step 2: Pass to match-programs API
+      const matchResponse = await fetch("/api/match-programs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ weightedKeywords }),
+      });
+
+      if (!matchResponse.ok) {
+        const errorText = await matchResponse.text();
+        throw new Error(`Failed to fetch matching programs: ${matchResponse.status} - ${errorText}`);
+      }
+
+      const data = await matchResponse.json();
+      console.log("API Response for Freeform Search:", data); // Debug log
+      setMatchingPrograms(data.matchingPrograms || []);
     } catch (err) {
-      setError("An error occurred while finding matching programs. Please try again.")
+      // Fallback: Use original string-based matching if Ollama fails
+      if (err.message.includes("Failed to process with Ollama")) {
+        try {
+          const fallbackResponse = await fetch("/api/match-programs", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userInput: freeformInput }),
+          });
+
+          if (!fallbackResponse.ok) {
+            const errorText = await fallbackResponse.text();
+            throw new Error(`Fallback failed: ${fallbackResponse.status} - ${errorText}`);
+          }
+
+          const data = await fallbackResponse.json();
+          console.log("Fallback API Response:", data); // Debug log
+          setMatchingPrograms(data.matchingPrograms || []);
+        } catch (fallbackErr) {
+          setError("An error occurred. Please try again.");
+          console.error("Freeform Fallback Error:", fallbackErr);
+        }
+      } else {
+        setError("An error occurred while finding matching programs. Please try again.");
+        console.error("Freeform Search Error:", err);
+      }
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const resetForm = () => {
-    setCurrentStep(0)
-    setAnswers({})
-    setFreeformInput("")
-    setMatchingPrograms([])
-    setError(null)
-  }
+    setCurrentStep(0);
+    setAnswers({});
+    setFreeformInput("");
+    setMatchingPrograms([]);
+    setError(null);
+  };
 
   const saveResults = () => {
-    // Implement save functionality (e.g., generate PDF or send email)
-    console.log("Saving results...")
-  }
+    // This function is now empty but kept for potential future use
+    console.log("Save and email functionality removed for now.");
+  };
 
-  const currentQuestion = GUIDED_QUESTIONS[currentStep]
+  const currentQuestion = GUIDED_QUESTIONS[currentStep];
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <div className="text-center space-y-4 mb-8">
-        <h1 className="text-4xl font-bold tracking-tight">Find Your Perfect Study Program</h1>
+        <h1 className="text-4xl font-bold tracking-tight">Find Your Study Path</h1>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Discover the ideal bachelor's program at Tilburg University based on your interests, goals, and aspirations
+          Discover the perfect bachelor's program at Tilburg University based on your interests and goals
         </p>
       </div>
 
       <Tabs
         value={activeTab}
         onValueChange={(value) => {
-          setActiveTab(value)
-          resetForm()
+          setActiveTab(value);
+          resetForm();
         }}
       >
-        <TabsList className="grid w-full grid-cols-2 mb-8">
-          <TabsTrigger value="guided" className="space-x-2">
+        <TabsList className="grid w-full grid-cols-2 mb-8 bg-gray-100 rounded-full p-1">
+          <TabsTrigger value="guided" className="flex items-center space-x-2 p-2 rounded-full data-[state=active]:bg-white data-[state=active]:shadow-md">
             <Target className="w-4 h-4" />
             <span>Guided Search</span>
           </TabsTrigger>
-          <TabsTrigger value="freeform" className="space-x-2">
+          <TabsTrigger value="freeform" className="flex items-center space-x-2 p-2 rounded-full data-[state=active]:bg-white data-[state=active]:shadow-md">
             <Search className="w-4 h-4" />
             <span>Free Search</span>
           </TabsTrigger>
@@ -250,7 +242,7 @@ export function StudyPathFinder() {
                   <CardContent>
                     <Progress value={((currentStep + 1) / GUIDED_QUESTIONS.length) * 100} className="mb-4" />
                     <RadioGroup
-                      value={answers[currentQuestion.id]}
+                      value={answers[currentQuestion.id] || ""} // Ensure a default value to prevent rendering issues
                       onValueChange={(value) => setAnswers((prev) => ({ ...prev, [currentQuestion.id]: value }))}
                     >
                       <div className="space-y-3">
@@ -277,9 +269,9 @@ export function StudyPathFinder() {
                     <Button
                       onClick={() => {
                         if (currentStep === GUIDED_QUESTIONS.length - 1) {
-                          handleGuidedSubmit()
+                          handleGuidedSubmit();
                         } else {
-                          setCurrentStep((prev) => prev + 1)
+                          setCurrentStep((prev) => prev + 1);
                         }
                       }}
                       disabled={!answers[currentQuestion.id]}
@@ -319,7 +311,7 @@ export function StudyPathFinder() {
                   onChange={(e) => setFreeformInput(e.target.value)}
                   className="min-h-[150px]"
                 />
-                <Button type="submit" className="w-full" disabled={!freeformInput.trim() || isLoading}>
+                <Button type="submit" className="w-full" disabled={!freeformInput.trim()}>
                   {isLoading ? (
                     <span className="flex items-center">
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -335,44 +327,45 @@ export function StudyPathFinder() {
               </form>
             </CardContent>
           </Card>
+          {error && <div className="mt-8 text-center text-red-500">{error}</div>}
+
+          {isLoading && (
+            <div className="mt-8 text-center">
+              <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
+              <p className="text-muted-foreground">Finding the best programs for you...</p>
+            </div>
+          )}
+
+          {matchingPrograms.length > 0 && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-8">
+              <div className="text-center mb-6">
+                <h2 className="text-2xl font-bold mb-2">Our Recommendations for You</h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  Based on your interests in{" "}
+                  {freeformInput
+                    .split(/\s+/)
+                    .filter((word) => word.length > 0 && !["i", "my", "me", "want", "like"].includes(word.toLowerCase()))
+                    .slice(0, 3)
+                    .join(", ") || "your described goals"}, we recommend checking out these programs at Tilburg University:
+                  {matchingPrograms.map((program, index) => (
+                    <span key={program.name}>
+                      {index === 0 ? " " : ", "}
+                      <strong>{program.name}</strong>
+                    </span>
+                  ))}
+                  .
+                </p>
+              </div>
+              <ProgramResults programs={matchingPrograms} />
+              <div className="mt-6 flex justify-center">
+                <Button variant="outline" onClick={resetForm}>
+                  Start Over
+                </Button>
+              </div>
+            </motion.div>
+          )}
         </TabsContent>
       </Tabs>
-
-      {error && <div className="mt-8 text-center text-red-500">{error}</div>}
-
-      {isLoading && (
-        <div className="mt-8 text-center">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
-          <p className="text-muted-foreground">Finding the best programs for you...</p>
-        </div>
-      )}
-
-      {matchingPrograms.length > 0 && (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-8">
-          <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold mb-2">Your Top 3 Recommended Programs</h2>
-            <p className="text-muted-foreground">
-              Based on your {activeTab === "guided" ? "answers" : "interests"}, here are the top 3 programs that best
-              match your profile
-            </p>
-          </div>
-          <ProgramResults programs={matchingPrograms} />
-          <div className="mt-6 flex justify-center space-x-4">
-            <Button variant="outline" onClick={resetForm}>
-              Start Over
-            </Button>
-            <Button onClick={saveResults}>
-              <Download className="mr-2 h-4 w-4" />
-              Save Results
-            </Button>
-            <Button onClick={saveResults}>
-              <Mail className="mr-2 h-4 w-4" />
-              Email Results
-            </Button>
-          </div>
-        </motion.div>
-      )}
     </div>
-  )
+  );
 }
-

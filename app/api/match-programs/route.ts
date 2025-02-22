@@ -1,21 +1,30 @@
-import { NextResponse } from "next/server"
-import { matchPrograms } from "@/lib/match-programs"
-import programsData from "@/lib/programs.json"
+import { NextResponse } from "next/server";
+import { matchPrograms } from "@/lib/match-programs";
+import programsData from "@/lib/programs.json"; // Import the entire JSON object
 
-export async function POST(request: Request) {
+export async function POST(req: Request) {
   try {
-    const { weightedKeywords, userInput } = await request.json()
+    const body = await req.json();
+    let input: string | { keyword: string; weight: number }[];
 
-    if (!weightedKeywords && !userInput) {
-      return NextResponse.json({ error: "Either weighted keywords or user input is required" }, { status: 400 })
+    if ("weightedKeywords" in body) {
+      input = body.weightedKeywords;
+    } else if ("userInput" in body) {
+      input = body.userInput;
+    } else {
+      return NextResponse.json({ error: "Invalid input format" }, { status: 400 });
     }
 
-    const matchingPrograms = matchPrograms(weightedKeywords || userInput, programsData.programs)
+    // Extract the programs array from the JSON object
+    const programs = programsData.programs;
+    if (!Array.isArray(programs)) {
+      throw new Error("Programs data is not an array in programs.json");
+    }
 
-    return NextResponse.json({ matchingPrograms })
+    const matchingPrograms = matchPrograms(input, programs);
+    return NextResponse.json({ matchingPrograms });
   } catch (error) {
-    console.error("Error in match-programs route:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    console.error("Error in match-programs API:", error);
+    return NextResponse.json({ error: `Failed to match programs: ${error.message}` }, { status: 500 });
   }
 }
-

@@ -1,32 +1,32 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { BookOpen, BriefcaseIcon, GraduationCap, TagIcon, ExternalLink, Trophy } from "lucide-react"
+import { motion } from "framer-motion";
+import { BookOpen, BriefcaseIcon, GraduationCap, TagIcon, ExternalLink, Trophy } from "lucide-react";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
-import { boostPercentage } from "@/lib/match-programs"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { boostPercentage } from "@/lib/match-programs";
 
 interface Program {
-  name: string
-  description: string
-  subjects: string[]
-  careers: string[]
-  skills: string[]
-  keywords: string[]
-  compatibilityPercentage: number
-  link: string
+  name: string;
+  description: string;
+  subjects: string[];
+  careers: string[];
+  skills: string[];
+  keywords: string[];
+  compatibilityPercentage: number;
+  link: string;
 }
 
 interface ProgramResultsProps {
-  programs: Program[]
+  programs: Program[];
 }
 
 export function ProgramResults({ programs }: ProgramResultsProps) {
   // Programs are already sorted and limited to top 3 from the backend
-  const topPrograms = programs
+  const topPrograms = programs;
 
   return (
     <div className="space-y-6">
@@ -143,6 +143,5 @@ export function ProgramResults({ programs }: ProgramResultsProps) {
         </motion.div>
       ))}
     </div>
-  )
+  );
 }
-
