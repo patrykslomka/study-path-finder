@@ -8,7 +8,7 @@ const KEYWORD_WEIGHTS = {
   LOW: 0.5,
 };
 
-// Updated INTENT_KEYWORDS to match GUIDED_QUESTIONS and programs.json
+// Updated INTENT_KEYWORDS with synonyms and related terms
 const INTENT_KEYWORDS = {
   business: [
     { term: "business", weight: KEYWORD_WEIGHTS.CRITICAL },
@@ -18,6 +18,7 @@ const INTENT_KEYWORDS = {
     { term: "startup", weight: KEYWORD_WEIGHTS.HIGH },
     { term: "management", weight: KEYWORD_WEIGHTS.MEDIUM },
     { term: "finance", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "international business", weight: KEYWORD_WEIGHTS.MEDIUM },
   ],
   technology: [
     { term: "technology", weight: KEYWORD_WEIGHTS.CRITICAL },
@@ -29,6 +30,11 @@ const INTENT_KEYWORDS = {
     { term: "analytics", weight: KEYWORD_WEIGHTS.MEDIUM },
     { term: "cognitive science", weight: KEYWORD_WEIGHTS.MEDIUM },
     { term: "cybersecurity", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "machine learning", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "tech", weight: KEYWORD_WEIGHTS.HIGH }, // Synonym
+    { term: "tech-savvy", weight: KEYWORD_WEIGHTS.HIGH }, // Synonym
+    { term: "tech innovation", weight: KEYWORD_WEIGHTS.MEDIUM }, // Related term
+    { term: "computer science", weight: KEYWORD_WEIGHTS.MEDIUM }, // Related term
   ],
   law: [
     { term: "law", weight: KEYWORD_WEIGHTS.CRITICAL },
@@ -37,6 +43,7 @@ const INTENT_KEYWORDS = {
     { term: "human rights", weight: KEYWORD_WEIGHTS.HIGH },
     { term: "corporate law", weight: KEYWORD_WEIGHTS.MEDIUM },
     { term: "environmental law", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "international law", weight: KEYWORD_WEIGHTS.MEDIUM },
   ],
   social: [
     { term: "sociology", weight: KEYWORD_WEIGHTS.CRITICAL },
@@ -45,6 +52,7 @@ const INTENT_KEYWORDS = {
     { term: "psychology", weight: KEYWORD_WEIGHTS.HIGH },
     { term: "human resources", weight: KEYWORD_WEIGHTS.HIGH },
     { term: "organizational behavior", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "social policy", weight: KEYWORD_WEIGHTS.MEDIUM },
   ],
   culture: [
     { term: "digital culture", weight: KEYWORD_WEIGHTS.CRITICAL },
@@ -52,6 +60,7 @@ const INTENT_KEYWORDS = {
     { term: "theology", weight: KEYWORD_WEIGHTS.HIGH },
     { term: "media studies", weight: KEYWORD_WEIGHTS.HIGH },
     { term: "cultural programming", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "social media", weight: KEYWORD_WEIGHTS.MEDIUM },
   ],
 };
 
@@ -78,7 +87,7 @@ export function matchPrograms(input: string | WeightedKeyword[], programs: Progr
         Object.entries(INTENT_KEYWORDS).forEach(([intent, keywords]) => {
           let intentMatches = 0;
           keywords.forEach(({ term, weight }) => {
-            if (inputLower.includes(term.toLowerCase())) { // Ensure case-insensitive matching
+            if (inputLower.includes(term.toLowerCase())) {
               intentMatches += weight;
             }
           });

@@ -67,7 +67,14 @@
         "Innovation",
         "Technology Management",
         "Marketing",
-        "Corporate Governance"
+        "Corporate Governance",
+        "Global Trade",
+        "Business Management",
+        "International Trade",
+        "Global Strategy",
+        "Entrepreneurship",
+        "Economic Analysis",
+        "Corporate Leadership"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/international-business-administration",
       "compatibilityPercentage": 0
@@ -126,7 +133,12 @@
         "Venture Capital",
         "Tech Innovation",
         "Business Models",
-        "Corporate Innovation"
+        "Corporate Innovation",
+        "Entrepreneurial Ventures",
+        "Startup Culture",
+        "Business Creation",
+        "Innovative Strategies",
+        "Economic Growth"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/entrepreneurship-business-innovation",
       "compatibilityPercentage": 0
@@ -178,7 +190,12 @@
         "Environmental Law",
         "Trade Law",
         "Legal Ethics",
-        "Conflict Resolution"
+        "Conflict Resolution",
+        "Global Legal Systems",
+        "International Justice",
+        "Legal Policy",
+        "Humanitarian Law",
+        "Legal Governance"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/global-law",
       "compatibilityPercentage": 0
@@ -230,7 +247,12 @@
         "Research",
         "Neuropsychology",
         "Behavioral Science",
-        "Counseling"
+        "Counseling",
+        "Behavioral Analysis",
+        "Mental Well-being",
+        "Psychological Research",
+        "Cognitive Behavior",
+        "Therapy Practices"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/psychology",
       "compatibilityPercentage": 0
@@ -281,7 +303,18 @@
         "Neuroscience",
         "Natural Language Processing",
         "Robotics",
-        "AI Ethics"
+        "AI Ethics",
+        "technology",
+        "tech",
+        "tech-savvy",
+        "tech innovation",
+        "computer science",
+        "programming",
+        "AI Technology",
+        "Cognitive Technology",
+        "Data Analytics",
+        "Intelligent Systems",
+        "Tech Research"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/cognitive-science-artificial-intelligence",
       "compatibilityPercentage": 0
@@ -332,7 +365,12 @@
         "Financial Markets",
         "Behavioral Economics",
         "Game Theory",
-        "Development Economics"
+        "Development Economics",
+        "Economic Strategy",
+        "Financial Analysis",
+        "Policy Research",
+        "Market Economics",
+        "Quantitative Economics"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/economics",
       "compatibilityPercentage": 0
@@ -383,7 +421,12 @@
         "Global Awareness",
         "Cultural Studies",
         "Ethics",
-        "Research"
+        "Research",
+        "Broad Learning",
+        "Interdisciplinary Research",
+        "Cultural Analysis",
+        "Scientific Inquiry",
+        "Ethical Studies"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/liberal-arts-and-sciences",
       "compatibilityPercentage": 0
@@ -435,7 +478,18 @@
         "Python",
         "R Programming",
         "SQL",
-        "Data Visualization Tools"
+        "Data Visualization Tools",
+        "technology",
+        "tech",
+        "tech-savvy",
+        "tech innovation",
+        "computer science",
+        "programming",
+        "Data Analytics",
+        "Big Data Analysis",
+        "Machine Intelligence",
+        "Statistical Modeling",
+        "Tech Solutions"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/data-science",
       "compatibilityPercentage": 0
@@ -493,7 +547,12 @@
         "Statistics",
         "Decision Making",
         "Data Science",
-        "Game Theory"
+        "Game Theory",
+        "Quantitative Modeling",
+        "Operational Efficiency",
+        "Statistical Methods",
+        "Economic Optimization",
+        "Data-Driven Decisions"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/econometrics-operations-research",
       "compatibilityPercentage": 0
@@ -549,7 +608,12 @@
         "Ethics",
         "Management",
         "Sustainable Development Goals",
-        "Global Governance"
+        "Global Governance",
+        "Social Challenges",
+        "Interdisciplinary Solutions",
+        "Cultural Integration",
+        "Sustainable Practices",
+        "Policy Innovation"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/global-management-social-issues",
       "compatibilityPercentage": 0
@@ -603,7 +667,12 @@
         "Human-Computer Interaction",
         "Ethics in Technology",
         "Social Media",
-        "Digital Humanities"
+        "Digital Humanities",
+        "Digital Media", 
+        "Tech Culture", 
+        "Media Innovation", 
+        "Digital Creativity", 
+        "Cultural Technology" 
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/digital-culture",
       "compatibilityPercentage": 0
@@ -656,7 +725,12 @@
         "HR Analytics",
         "Employee Well-Being",
         "Organizational Behavior",
-        "Strategic HRM"
+        "Strategic HRM",
+        "Workforce Management", 
+        "HR Strategies", 
+        "Organizational Development", 
+        "Inclusion Policies", 
+        "Employee Engagement"
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/human-resource-studies-people-management",
       "compatibilityPercentage": 0
@@ -706,7 +780,12 @@
         "Cultural Diversity",
         "Social Policy",
         "Human Rights",
-        "Social Networks"
+        "Social Networks",
+        "Social Research", 
+        "Global Sociology", 
+        "Cultural Studies", 
+        "Social Justice", 
+        "Policy Analysis" 
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/international-sociology",
       "compatibilityPercentage": 0
@@ -754,7 +833,12 @@
         "Comparative Religion",
         "Church History",
         "Pastoral Care",
-        "Interfaith Dialogue"
+        "Interfaith Dialogue",
+        "Religious Philosophy", 
+        "Spiritual Studies", 
+        "Ethical Theology", 
+        "Religious Ethics", 
+        "Faith Studies" 
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/theology",
       "compatibilityPercentage": 0
@@ -801,7 +885,12 @@
         "Sustainable Leisure",
         "Sports Management",
         "Recreation",
-        "Tourism Marketing"
+        "Tourism Marketing",
+        "Leisure Activities",
+        "Recreational Studies", 
+        "Event Planning", 
+        "Cultural Events", 
+        "Sustainable Tourism" 
       ],
       "link": "https://www.tilburguniversity.edu/education/bachelors-programs/leisure-studies",
       "compatibilityPercentage": 0
