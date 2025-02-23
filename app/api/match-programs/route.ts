@@ -9,8 +9,10 @@ export async function POST(req: Request) {
 
     if ("weightedKeywords" in body) {
       input = body.weightedKeywords;
+      console.log("Received weightedKeywords for guided search:", input); // Debug log
     } else if ("userInput" in body) {
       input = body.userInput;
+      console.log("Received userInput for freeform search:", input); // Debug log
     } else {
       return NextResponse.json({ error: "Invalid input format" }, { status: 400 });
     }
@@ -22,6 +24,13 @@ export async function POST(req: Request) {
     }
 
     const matchingPrograms = matchPrograms(input, programs);
+    console.log("Matching programs output:", matchingPrograms); // Debug log
+
+    if (!matchingPrograms || matchingPrograms.length === 0) {
+      console.warn("No matching programs found for input:", input);
+      return NextResponse.json({ matchingPrograms: [] }); // Explicitly return empty array
+    }
+
     return NextResponse.json({ matchingPrograms });
   } catch (error) {
     console.error("Error in match-programs API:", error);

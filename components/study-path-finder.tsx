@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, Loader2, Search, Target, ArrowLeft, Sparkles } from "lucide-react"; // Removed unused icons
+import { ChevronRight, Loader2, Search, Target, ArrowLeft, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
@@ -79,8 +79,9 @@ export function StudyPathFinder() {
         const selectedOption = q.options.find((opt) => opt.id === answers[q.id]);
         if (!selectedOption) {
           console.warn(`No option found for ID ${q.id} with value ${answers[q.id]}`);
+          return [];
         }
-        return selectedOption?.keywords.map((keyword) => ({ keyword, weight: q.weight })) || [];
+        return selectedOption.keywords.map((keyword) => ({ keyword, weight: q.weight }));
       });
 
       console.log("Weighted Keywords for Guided Search:", weightedKeywords); // Debug log
@@ -102,7 +103,12 @@ export function StudyPathFinder() {
 
       const data = await response.json();
       console.log("API Response for Guided Search:", data); // Debug log
-      setMatchingPrograms(data.matchingPrograms || []);
+
+      // Ensure matchingPrograms is always an array, handle potential malformed responses
+      const programs = Array.isArray(data.matchingPrograms) ? data.matchingPrograms : [];
+      console.log("Parsed matchingPrograms for Guided Search:", programs); // Debug log
+      setMatchingPrograms(programs);
+
       setCurrentStep(GUIDED_QUESTIONS.length);
     } catch (err) {
       setError(`An error occurred while finding matching programs: ${err.message}`);
@@ -120,7 +126,7 @@ export function StudyPathFinder() {
     setError(null);
 
     try {
-      // Step 1: Process with Ollama
+      console.time("Freeform Search Processing");
       const ollamaResponse = await fetch("/api/ollama-process", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -132,7 +138,18 @@ export function StudyPathFinder() {
         throw new Error(`Failed to process with Ollama: ${ollamaResponse.status} - ${errorText}`);
       }
 
-      const { keywords: weightedKeywords } = await ollamaResponse.json();
+      const data = await ollamaResponse.json();
+      console.log("Ollama Response for Freeform Search:", data); // Debug log
+
+      let weightedKeywords;
+      if ("keywords" in data) {
+        weightedKeywords = data.keywords; // Handle Ollama's keyword output
+      } else if ("weightedKeywords" in data) {
+        weightedKeywords = data.weightedKeywords; // Handle potential legacy format
+      } else {
+        throw new Error("Invalid Ollama response format");
+      }
+
       console.log("Weighted Keywords from Ollama:", weightedKeywords); // Debug log
 
       // Step 2: Pass to match-programs API
@@ -147,9 +164,14 @@ export function StudyPathFinder() {
         throw new Error(`Failed to fetch matching programs: ${matchResponse.status} - ${errorText}`);
       }
 
-      const data = await matchResponse.json();
-      console.log("API Response for Freeform Search:", data); // Debug log
-      setMatchingPrograms(data.matchingPrograms || []);
+      const matchData = await matchResponse.json();
+      console.log("API Response for Freeform Search:", matchData); // Debug log
+
+      // Ensure matchingPrograms is always an array, handle potential malformed responses
+      const programs = Array.isArray(matchData.matchingPrograms) ? matchData.matchingPrograms : [];
+      console.log("Parsed matchingPrograms for Freeform Search:", programs); // Debug log
+      setMatchingPrograms(programs);
+      console.timeEnd("Freeform Search Processing");
     } catch (err) {
       // Fallback: Use original string-based matching if Ollama fails
       if (err.message.includes("Failed to process with Ollama")) {
@@ -167,7 +189,10 @@ export function StudyPathFinder() {
 
           const data = await fallbackResponse.json();
           console.log("Fallback API Response:", data); // Debug log
-          setMatchingPrograms(data.matchingPrograms || []);
+
+          const programs = Array.isArray(data.matchingPrograms) ? data.matchingPrograms : [];
+          console.log("Parsed matchingPrograms for Fallback:", programs); // Debug log
+          setMatchingPrograms(programs);
         } catch (fallbackErr) {
           setError("An error occurred. Please try again.");
           console.error("Freeform Fallback Error:", fallbackErr);
@@ -187,11 +212,6 @@ export function StudyPathFinder() {
     setFreeformInput("");
     setMatchingPrograms([]);
     setError(null);
-  };
-
-  const saveResults = () => {
-    // This function is now empty but kept for potential future use
-    console.log("Save and email functionality removed for now.");
   };
 
   const currentQuestion = GUIDED_QUESTIONS[currentStep];
@@ -242,7 +262,7 @@ export function StudyPathFinder() {
                   <CardContent>
                     <Progress value={((currentStep + 1) / GUIDED_QUESTIONS.length) * 100} className="mb-4" />
                     <RadioGroup
-                      value={answers[currentQuestion.id] || ""} // Ensure a default value to prevent rendering issues
+                      value={answers[currentQuestion.id] || ""}
                       onValueChange={(value) => setAnswers((prev) => ({ ...prev, [currentQuestion.id]: value }))}
                     >
                       <div className="space-y-3">
@@ -290,7 +310,42 @@ export function StudyPathFinder() {
                     </Button>
                   </CardFooter>
                 </motion.div>
-              ) : null}
+              ) : (
+                matchingPrograms.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-6"
+                  >
+                    <div className="text-center mb-6">
+                      <h2 className="text-2xl font-bold mb-2">Our Recommendations for You</h2>
+                      <p className="text-muted-foreground max-w-2xl mx-auto">
+                        Based on your interests in{" "}
+                        {GUIDED_QUESTIONS.flatMap((q) =>
+                          q.options.find((opt) => opt.id === answers[q.id])?.keywords || []
+                        )
+                          .filter((word, index, self) => self.indexOf(word) === index) // Remove duplicates
+                          .slice(0, 3)
+                          .join(", ") || "your described goals"}
+                        , we recommend checking out these programs at Tilburg University:
+                        {matchingPrograms.map((program, index) => (
+                          <span key={program.name} className="inline-block">
+                            {index === 0 ? " " : ", "}
+                            <strong>{program.name}</strong>
+                          </span>
+                        ))}
+                        .
+                      </p>
+                    </div>
+                    <ProgramResults programs={matchingPrograms} />
+                    <div className="mt-6 flex justify-center">
+                      <Button variant="outline" onClick={resetForm}>
+                        Start Over
+                      </Button>
+                    </div>
+                  </motion.div>
+                )
+              )}
             </AnimatePresence>
           </Card>
         </TabsContent>
@@ -346,7 +401,8 @@ export function StudyPathFinder() {
                     .split(/\s+/)
                     .filter((word) => word.length > 0 && !["i", "my", "me", "want", "like"].includes(word.toLowerCase()))
                     .slice(0, 3)
-                    .join(", ") || "your described goals"}, we recommend checking out these programs at Tilburg University:
+                    .join(", ") || "your described goals"}
+                  , we recommend checking out these programs at Tilburg University:
                   {matchingPrograms.map((program, index) => (
                     <span key={program.name}>
                       {index === 0 ? " " : ", "}

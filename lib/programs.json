@@ -68,7 +68,9 @@
         "Technology Management",
         "Marketing",
         "Corporate Governance"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/international-business-administration",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BSc Entrepreneurship and Business Innovation",
@@ -125,7 +127,9 @@
         "Tech Innovation",
         "Business Models",
         "Corporate Innovation"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/entrepreneurship-business-innovation",
+      "compatibilityPercentage": 0
     },
     {
       "name": "LLB Global Law",
@@ -175,7 +179,9 @@
         "Trade Law",
         "Legal Ethics",
         "Conflict Resolution"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/global-law",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BSc Psychology",
@@ -225,7 +231,9 @@
         "Neuropsychology",
         "Behavioral Science",
         "Counseling"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/psychology",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BSc Cognitive Science and Artificial Intelligence",
@@ -274,7 +282,9 @@
         "Natural Language Processing",
         "Robotics",
         "AI Ethics"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/cognitive-science-artificial-intelligence",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BSc Economics",
@@ -323,7 +333,9 @@
         "Behavioral Economics",
         "Game Theory",
         "Development Economics"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/economics",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BA Liberal Arts and Sciences",
@@ -372,7 +384,9 @@
         "Cultural Studies",
         "Ethics",
         "Research"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/liberal-arts-and-sciences",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BSc Data Science",
@@ -422,7 +436,9 @@
         "R Programming",
         "SQL",
         "Data Visualization Tools"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/data-science",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BSc Econometrics and Operations Research",
@@ -478,7 +494,9 @@
         "Decision Making",
         "Data Science",
         "Game Theory"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/econometrics-operations-research",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BSc Global Management of Social Issues",
@@ -532,7 +550,9 @@
         "Management",
         "Sustainable Development Goals",
         "Global Governance"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/global-management-social-issues",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BA Digital Culture",
@@ -584,7 +604,9 @@
         "Ethics in Technology",
         "Social Media",
         "Digital Humanities"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/digital-culture",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BSc Human Resource Studies: People Management",
@@ -635,7 +657,9 @@
         "Employee Well-Being",
         "Organizational Behavior",
         "Strategic HRM"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/human-resource-studies-people-management",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BSc International Sociology",
@@ -683,7 +707,9 @@
         "Social Policy",
         "Human Rights",
         "Social Networks"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/international-sociology",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BA Theology",
@@ -729,7 +755,9 @@
         "Church History",
         "Pastoral Care",
         "Interfaith Dialogue"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/theology",
+      "compatibilityPercentage": 0
     },
     {
       "name": "BSc Leisure Studies",
@@ -774,7 +802,9 @@
         "Sports Management",
         "Recreation",
         "Tourism Marketing"
-      ]
+      ],
+      "link": "https://www.tilburguniversity.edu/education/bachelors-programs/leisure-studies",
+      "compatibilityPercentage": 0
     }
   ]
 }

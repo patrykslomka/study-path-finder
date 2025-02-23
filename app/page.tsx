@@ -1,4 +1,4 @@
-import { StudyPathFinder } from "@/components/study-path-finder"
+import { StudyPathFinder } from "@/components/study-path-finder"; // Updated path to match your structure
 
 export default function Page() {
   return (
@@ -7,12 +7,11 @@ export default function Page() {
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold tracking-tight">Find Your Study Path</h1>
           <p className="text-muted-foreground text-lg">
-            Discover the perfect bachelor&apos;s program at Tilburg University based on your interests and goals
+            Discover the perfect bachelor's program at Tilburg University based on your interests and goals
           </p>
         </div>
         <StudyPathFinder />
       </div>
     </main>
-  )
+  );
 }
-

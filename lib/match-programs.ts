@@ -8,121 +8,50 @@ const KEYWORD_WEIGHTS = {
   LOW: 0.5,
 };
 
-// Define critical keywords for different intents
+// Updated INTENT_KEYWORDS to match GUIDED_QUESTIONS and programs.json
 const INTENT_KEYWORDS = {
-  entrepreneurship: [
-    { term: "entrepreneur", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "start business", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "own business", weight: KEYWORD_WEIGHTS.CRITICAL },
+  business: [
+    { term: "business", weight: KEYWORD_WEIGHTS.CRITICAL },
+    { term: "entrepreneurship", weight: KEYWORD_WEIGHTS.CRITICAL },
+    { term: "economics", weight: KEYWORD_WEIGHTS.HIGH },
     { term: "business innovation", weight: KEYWORD_WEIGHTS.HIGH },
     { term: "startup", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "venture capital", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "business model", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  business: [
-    { term: "international business", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "supply chain", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "marketing", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "finance", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "management", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "corporate strategy", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "global markets", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  economics: [
-    { term: "economics", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "macroeconomics", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "microeconomics", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "economic policy", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "development economics", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "financial markets", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  law: [
-    { term: "global law", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "international law", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "human rights", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "corporate law", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "environmental law", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "legal analysis", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  psychology: [
-    { term: "psychology", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "mental health", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "cognitive psychology", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "neuroscience", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "behavioral science", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "clinical psychology", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "personality psychology", weight: KEYWORD_WEIGHTS.LOW },
-  ],
-  sociology: [
-    { term: "sociology", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "social inequality", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "migration", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "cultural diversity", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "social research", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "policy analysis", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  ai_and_data: [
-    { term: "artificial intelligence", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "machine learning", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "cognitive science", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "data science", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "technology", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "big data", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "natural language processing", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "predictive modeling", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  econometrics: [
-    { term: "econometrics", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "quantitative analysis", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "operations research", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "statistical modeling", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "optimization", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  human_resources: [
-    { term: "human resource management", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "talent management", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "people management", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "leadership", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "diversity and inclusion", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  global_issues: [
-    { term: "social impact", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "sustainability", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "human rights", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "social policy", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "corporate social responsibility", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  theology: [
-    { term: "theology", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "religion", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "spirituality", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "ethics", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "biblical studies", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  digital_culture: [
-    { term: "digital culture", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "media studies", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "social media", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "digital storytelling", weight: KEYWORD_WEIGHTS.MEDIUM },
-    { term: "human-computer interaction", weight: KEYWORD_WEIGHTS.MEDIUM },
-  ],
-  leisure_studies: [
-    { term: "leisure", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "tourism", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "event management", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "cultural programming", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "management", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "finance", weight: KEYWORD_WEIGHTS.MEDIUM },
   ],
   technology: [
     { term: "technology", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "computer science", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "data science", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "artificial intelligence", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "artificial intelligence", weight: KEYWORD_WEIGHTS.CRITICAL },
+    { term: "data science", weight: KEYWORD_WEIGHTS.CRITICAL },
+    { term: "software development", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "programming", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "statistics", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "analytics", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "cognitive science", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "cybersecurity", weight: KEYWORD_WEIGHTS.MEDIUM },
   ],
-  social_sciences: [
+  law: [
+    { term: "law", weight: KEYWORD_WEIGHTS.CRITICAL },
+    { term: "global law", weight: KEYWORD_WEIGHTS.CRITICAL },
+    { term: "governance", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "human rights", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "corporate law", weight: KEYWORD_WEIGHTS.MEDIUM },
+    { term: "environmental law", weight: KEYWORD_WEIGHTS.MEDIUM },
+  ],
+  social: [
     { term: "sociology", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "psychology", weight: KEYWORD_WEIGHTS.CRITICAL },
-    { term: "anthropology", weight: KEYWORD_WEIGHTS.HIGH },
-    { term: "political science", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "social issues", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "global management", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "psychology", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "human resources", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "organizational behavior", weight: KEYWORD_WEIGHTS.MEDIUM },
+  ],
+  culture: [
+    { term: "digital culture", weight: KEYWORD_WEIGHTS.CRITICAL },
+    { term: "leisure studies", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "theology", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "media studies", weight: KEYWORD_WEIGHTS.HIGH },
+    { term: "cultural programming", weight: KEYWORD_WEIGHTS.MEDIUM },
   ],
 };
 
@@ -142,14 +71,14 @@ export function matchPrograms(input: string | WeightedKeyword[], programs: Progr
       let score = 0;
 
       if (typeof input === "string") {
-        // Fallback: Original string-based matching (if Ollama fails)
+        // Fallback: String-based matching for freeform input
         const inputLower = input.toLowerCase();
-
         let intentScore = 0;
+
         Object.entries(INTENT_KEYWORDS).forEach(([intent, keywords]) => {
           let intentMatches = 0;
           keywords.forEach(({ term, weight }) => {
-            if (inputLower.includes(term)) {
+            if (inputLower.includes(term.toLowerCase())) { // Ensure case-insensitive matching
               intentMatches += weight;
             }
           });
@@ -166,12 +95,12 @@ export function matchPrograms(input: string | WeightedKeyword[], programs: Progr
         const baseScore = (nameScore + descriptionScore + keywordScore + skillScore + careerScore + subjectScore) / 12.5;
         score = baseScore * (1 + intentScore);
 
-        // Apply exact match bonus
+        // Apply exact match bonus for keywords
         if (program.keywords.some((keyword) => inputLower.includes(keyword.toLowerCase()))) {
           score *= 1.5;
         }
-      } else {
-        // Existing weighted keyword logic (used for both guided and Ollama outputs)
+      } else if (Array.isArray(input)) {
+        // Weighted keyword matching for guided search or Ollama output
         input.forEach(({ keyword, weight }) => {
           const keywordLower = keyword.toLowerCase();
           const nameScore = calculateSimilarity(keywordLower, program.name.toLowerCase()) * 3.0;
@@ -185,13 +114,21 @@ export function matchPrograms(input: string | WeightedKeyword[], programs: Progr
             ((nameScore + descriptionScore + keywordScore + skillScore + careerScore + subjectScore) / 12.5) * weight;
         });
         score /= input.length;
+      } else {
+        throw new Error("Invalid input type for matchPrograms");
       }
 
       return { program, score };
     });
 
-    // Sort by score and return top matches with adjusted percentages
-    return scoredPrograms
+    // Sort by score, filter out zero or negative scores, and return top 3
+    const validScoredPrograms = scoredPrograms.filter((p) => p.score > 0);
+    if (validScoredPrograms.length === 0) {
+      console.warn("No programs matched with positive scores. Input:", input);
+      return [];
+    }
+
+    return validScoredPrograms
       .sort((a, b) => b.score - a.score)
       .slice(0, 3)
       .map(({ program, score }, index) => ({
@@ -200,12 +137,11 @@ export function matchPrograms(input: string | WeightedKeyword[], programs: Progr
       }));
   } catch (error) {
     console.error("Error in matchPrograms:", error);
-    // Fallback: Return empty array if processing fails
-    return [];
+    return []; // Return empty array for graceful fallback
   }
 }
 
-// Minimal implementation of calculateDisplayPercentage for completeness (adjust as needed)
+// Minimal implementation of calculateDisplayPercentage for completeness
 function calculateDisplayPercentage(score: number, index: number): number {
   let percentage = Math.round(score * 100);
 

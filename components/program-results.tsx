@@ -46,7 +46,7 @@ export function ProgramResults({ programs }: ProgramResultsProps) {
                 </div>
                 <Badge
                   variant="default"
-                  className={`text-lg px-3 py-1 ${index === 0 ? "bg-primary text-primary-foreground" : "bg-secondary"}`}
+                  className={`text-lg px-3 py-1 ${index === 0 ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"}`}
                 >
                   {boostPercentage(program.compatibilityPercentage)}% Match
                 </Badge>
