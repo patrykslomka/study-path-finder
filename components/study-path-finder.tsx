@@ -131,6 +131,7 @@ export function StudyPathFinder() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userInput: freeformInput }),
+        timeout: 30000, // 30-second timeout to prevent hanging
       });
 
       if (!ollamaResponse.ok) {
@@ -157,6 +158,7 @@ export function StudyPathFinder() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ weightedKeywords }),
+        timeout: 30000, // 30-second timeout
       });
 
       if (!matchResponse.ok) {
@@ -180,6 +182,7 @@ export function StudyPathFinder() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ userInput: freeformInput }),
+            timeout: 30000, // 30-second timeout
           });
 
           if (!fallbackResponse.ok) {
@@ -219,6 +222,7 @@ export function StudyPathFinder() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <div className="text-center space-y-4 mb-8">
+        <img src="/logo-tilburg.png" alt="Tilburg University Logo" className="mx-auto w-64 h-auto mb-4" />
         <h1 className="text-4xl font-bold tracking-tight">Find Your Study Path</h1>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
           Discover the perfect bachelor's program at Tilburg University based on your interests and goals
