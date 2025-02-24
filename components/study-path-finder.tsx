@@ -14,8 +14,9 @@ import { Progress } from "@/components/ui/progress";
 import { ProgramResults } from "./program-results";
 import type { Program } from "@/types/program";
 
-const GUIDED_QUESTIONS = [
-  {
+const GUIDED_QUESTIONS_BASE = {
+  // Base structure for Step 1 (Interest)
+  0: {
     id: "interest",
     question: "What field interests you the most?",
     weight: 0.4,
@@ -27,38 +28,117 @@ const GUIDED_QUESTIONS = [
       { id: "culture", label: "Culture, Media & Leisure", keywords: ["digital culture", "leisure studies", "theology", "media studies"] },
     ],
   },
-  {
-    id: "career",
-    question: "What's your primary career goal?",
-    weight: 0.3,
-    options: [
-      { id: "entrepreneur", label: "Start my own business", keywords: ["entrepreneurship", "business innovation"] },
-      { id: "organization", label: "Work in organizations (business or international)", keywords: ["international business", "human resources", "economics", "global law", "international relations"] },
-      { id: "research", label: "Conduct research & analyze data", keywords: ["econometrics", "cognitive science", "psychology", "data science"] },
-      { id: "social_impact", label: "Make a social impact", keywords: ["sociology", "global management", "theology"] },
-      { id: "creative", label: "Create and innovate in media & culture", keywords: ["digital culture", "leisure studies"] },
+
+  // Dynamic structure for subsequent steps (filled dynamically below)
+};
+
+const DYNAMIC_OPTIONS = {
+  // Step 2 (Career) based on Step 1 (Interest)
+  career: {
+    business: [
+      { id: "startup", label: "Start my own business", keywords: ["entrepreneurship", "business innovation"] },
+      { id: "organization", label: "Work in a large corporation", keywords: ["international business", "management", "economics"] },
+      { id: "consulting", label: "Work as a business consultant", keywords: ["business strategy", "consulting", "finance"] },
+    ],
+    technology: [
+      { id: "tech_dev", label: "Develop technology (AI, Data, Software)", keywords: ["artificial intelligence", "data science", "programming"] },
+      { id: "research", label: "Conduct tech research", keywords: ["cognitive science", "machine learning", "research"] },
+      { id: "startup_tech", label: "Work in a tech startup", keywords: ["tech innovation", "startup", "software development"] },
+    ],
+    law: [
+      { id: "law_firm", label: "Work in a law firm", keywords: ["law", "legal practice", "corporate law"] },
+      { id: "large_org", label: "Work in a large organization", keywords: ["global law", "governance", "international law"] },
+      { id: "startup_law", label: "Work in a startup with legal focus", keywords: ["law", "startup", "legal innovation"] },
+    ],
+    social: [
+      { id: "social_impact", label: "Make a social impact", keywords: ["sociology", "global management", "social issues"] },
+      { id: "org_behavior", label: "Work in organizational behavior", keywords: ["human resources", "organizational behavior", "psychology"] },
+      { id: "policy", label: "Develop social policies", keywords: ["social policy", "research", "human rights"] },
+    ],
+    culture: [
+      { id: "media_creative", label: "Create in media or culture", keywords: ["digital culture", "media studies", "cultural innovation"] },
+      { id: "leisure", label: "Work in leisure or tourism", keywords: ["leisure studies", "tourism management", "cultural events"] },
+      { id: "theology", label: "Work in religious studies", keywords: ["theology", "spirituality", "interfaith dialogue"] },
     ],
   },
-  {
-    id: "skills",
-    question: "Which skills do you want to develop?",
-    weight: 0.2,
-    options: [
-      { id: "analytical_tech", label: "Analytical & technical skills", keywords: ["econometrics", "economics", "data science", "cognitive science", "artificial intelligence", "statistics", "programming"] },
-      { id: "creative", label: "Creative & innovative thinking", keywords: ["entrepreneurship", "digital culture", "leisure studies", "business innovation"] },
-      { id: "people", label: "People, communication & leadership skills", keywords: ["human resources", "psychology", "organizational behavior", "leadership"] },
+
+  // Step 3 (Skills) based on Step 2 (Career), grouped by interest
+  skills: {
+    business: {
+      startup: [
+        { id: "innovative", label: "Innovative & entrepreneurial skills", keywords: ["innovative thinking", "business planning", "risk management"] },
+        { id: "leadership", label: "Leadership & networking skills", keywords: ["leadership", "networking", "communication"] },
+        { id: "financial", label: "Financial & strategic skills", keywords: ["financial acumen", "strategic planning", "market analysis"] },
+      ],
+      organization: [
+        { id: "strategic", label: "Strategic & managerial skills", keywords: ["strategic thinking", "management", "leadership"] },
+        { id: "analytical", label: "Analytical & data skills", keywords: ["data analysis", "analytical skills", "research skills"] },
+        { id: "cross_cultural", label: "Cross-cultural communication", keywords: ["cross-cultural communication", "global strategy", "team collaboration"] },
+      ],
+      consulting: [
+        { id: "analytical", label: "Analytical & problem-solving skills", keywords: ["analytical skills", "problem solving", "research skills"] },
+        { id: "strategic", label: "Strategic & consulting skills", keywords: ["strategic planning", "consulting", "business strategy"] },
+        { id: "communication", label: "Communication & presentation skills", keywords: ["communication", "public speaking", "pitch development"] },
+      ],
+    },
+    technology: {
+      tech_dev: [
+        { id: "technical", label: "Technical & programming skills", keywords: ["programming", "software development", "machine learning"] },
+        { id: "data", label: "Data analysis & AI skills", keywords: ["data science", "artificial intelligence", "data analysis"] },
+        { id: "problem_solving", label: "Problem-solving & innovation", keywords: ["problem solving", "tech innovation", "creative thinking"] },
+      ],
+      research: [
+        { id: "research", label: "Research & analytical skills", keywords: ["research skills", "data analysis", "cognitive science"] },
+        { id: "tech", label: "Technical & AI skills", keywords: ["artificial intelligence", "programming", "machine learning"] },
+        { id: "critical", label: "Critical thinking & innovation", keywords: ["critical thinking", "tech innovation", "problem solving"] },
+      ],
+      startup_tech: [
+        { id: "innovative", label: "Innovative & tech skills", keywords: ["tech innovation", "programming", "startup development"] },
+        { id: "entrepreneurial", label: "Entrepreneurial & leadership skills", keywords: ["entrepreneurship", "leadership", "business planning"] },
+        { id: "data", label: "Data & AI skills", keywords: ["data science", "artificial intelligence", "analytics"] },
+      ],
+    },
+    law: [
+      { id: "legal", label: "Legal analysis & drafting skills", keywords: ["legal analysis", "contract drafting", "legal research"] },
+      { id: "negotiation", label: "Negotiation & advocacy skills", keywords: ["negotiation", "advocacy", "conflict resolution"] },
+      { id: "communication", label: "Cross-cultural & communication skills", keywords: ["cross-cultural communication", "public speaking", "policy development"] },
     ],
+    social: {
+      social_impact: [
+        { id: "social", label: "Social innovation & policy skills", keywords: ["social innovation", "social policy", "ethical decision making"] },
+        { id: "cultural", label: "Cultural sensitivity & leadership", keywords: ["cultural sensitivity", "leadership", "community engagement"] },
+        { id: "research", label: "Research & analytical skills", keywords: ["research skills", "data interpretation", "social analysis"] },
+      ],
+      org_behavior: [
+        { id: "behavioral", label: "Behavioral & HR skills", keywords: ["organizational behavior", "human resources", "team collaboration"] },
+        { id: "leadership", label: "Leadership & communication", keywords: ["leadership", "communication", "problem solving"] },
+        { id: "analytical", label: "Analytical & strategic skills", keywords: ["analytical skills", "strategic planning", "data analysis"] },
+      ],
+      policy: [
+        { id: "policy", label: "Policy development & research skills", keywords: ["policy analysis", "research skills", "social policy"] },
+        { id: "ethical", label: "Ethical & leadership skills", keywords: ["ethical decision making", "leadership", "advocacy"] },
+        { id: "communication", label: "Communication & advocacy skills", keywords: ["communication", "public speaking", "community engagement"] },
+      ],
+    },
+    culture: {
+      media_creative: [
+        { id: "creative", label: "Creative & media skills", keywords: ["creative design", "media analysis", "digital storytelling"] },
+        { id: "tech", label: "Digital & tech skills", keywords: ["digital media", "tech culture", "programming"] },
+        { id: "communication", label: "Communication & cultural skills", keywords: ["communication", "cultural awareness", "storytelling"] },
+      ],
+      leisure: [
+        { id: "management", label: "Leisure & event management skills", keywords: ["event planning", "tourism management", "project management"] },
+        { id: "creative", label: "Creative & cultural skills", keywords: ["cultural programming", "creativity", "cultural sensitivity"] },
+        { id: "marketing", label: "Marketing & strategic skills", keywords: ["tourism marketing", "strategic planning", "customer experience"] },
+      ],
+      theology: [
+        { id: "theological", label: "Theological & ethical skills", keywords: ["theology", "ethics", "religious philosophy"] },
+        { id: "communication", label: "Interfaith & communication skills", keywords: ["interfaith dialogue", "communication", "public speaking"] },
+        { id: "pastoral", label: "Pastoral & leadership skills", keywords: ["pastoral care", "leadership", "community leadership"] },
+      ],
+    },
   },
-  {
-    id: "learning",
-    question: "What type of learning experience suits you best?",
-    weight: 0.1,
-    options: [
-      { id: "theory_practical", label: "Theory & practical learning", keywords: ["psychology", "theology", "sociology", "global law", "econometrics", "entrepreneurship", "business innovation", "leisure studies"] },
-      { id: "collaborative", label: "Collaborative & global learning", keywords: ["human resources", "global management", "digital culture", "international business", "international sociology"] },
-    ],
-  },
-];
+};
 
 export function StudyPathFinder() {
   const [activeTab, setActiveTab] = React.useState("guided");
@@ -69,20 +149,71 @@ export function StudyPathFinder() {
   const [matchingPrograms, setMatchingPrograms] = React.useState<Program[]>([]);
   const [error, setError] = React.useState<string | null>(null);
 
+  // Dynamically generate GUIDED_QUESTIONS based on answers
+  const getDynamicQuestions = () => {
+    const questions = { ...GUIDED_QUESTIONS_BASE };
+    const interest = answers.interest;
+
+    // Step 2: Career (depends on Step 1: Interest)
+    if (interest) {
+      questions[1] = {
+        id: "career",
+        question: "What's your primary career goal?",
+        weight: 0.3,
+        options: DYNAMIC_OPTIONS.career[interest] || DYNAMIC_OPTIONS.career.business, // Default to business if no match
+      };
+    }
+
+    // Step 3: Skills (depends on Step 1: Interest and Step 2: Career)
+    const career = answers.career;
+    if (interest && career) {
+      questions[2] = {
+        id: "skills",
+        question: "Which skills do you want to develop?",
+        weight: 0.2,
+        options:
+          DYNAMIC_OPTIONS.skills[interest]?.[career] ||
+          DYNAMIC_OPTIONS.skills.business.organization, // Default to business organization skills if no match
+      };
+    }
+
+    // Step 4: Learning (depends on Step 1: Interest, optional for simplicity, can be dynamic if needed)
+    if (interest) {
+      questions[3] = {
+        id: "learning",
+        question: "What type of learning experience suits you best?",
+        weight: 0.1,
+        options: [
+          { id: "theory_practical", label: "Theory & practical learning", keywords: [`${interest}_theory_practical`] },
+          { id: "collaborative", label: "Collaborative & global learning", keywords: [`${interest}_collaborative`] },
+        ],
+      };
+    }
+
+    return questions;
+  };
+
+  const GUIDED_QUESTIONS = getDynamicQuestions();
+
   const handleGuidedSubmit = async () => {
     setIsLoading(true);
     setError(null);
 
     try {
       // Combine keywords from selected answers with weights, ensuring all IDs exist
-      const weightedKeywords = GUIDED_QUESTIONS.flatMap((q) => {
-        const selectedOption = q.options.find((opt) => opt.id === answers[q.id]);
-        if (!selectedOption) {
-          console.warn(`No option found for ID ${q.id} with value ${answers[q.id]}`);
-          return [];
-        }
-        return selectedOption.keywords.map((keyword) => ({ keyword, weight: q.weight }));
-      });
+      const weightedKeywords = Object.entries(answers)
+        .map(([questionId, answerId]) => {
+          const question = Object.values(GUIDED_QUESTIONS).find((q) => q.id === questionId);
+          if (!question) return [];
+
+          const selectedOption = question.options.find((opt) => opt.id === answerId);
+          if (!selectedOption) {
+            console.warn(`No option found for ID ${questionId} with value ${answerId}`);
+            return [];
+          }
+          return selectedOption.keywords.map((keyword) => ({ keyword, weight: question.weight }));
+        })
+        .flat();
 
       console.log("Weighted Keywords for Guided Search:", weightedKeywords); // Debug log
 
@@ -109,7 +240,7 @@ export function StudyPathFinder() {
       console.log("Parsed matchingPrograms for Guided Search:", programs); // Debug log
       setMatchingPrograms(programs);
 
-      setCurrentStep(GUIDED_QUESTIONS.length);
+      setCurrentStep(Object.keys(GUIDED_QUESTIONS).length);
     } catch (err) {
       setError(`An error occurred while finding matching programs: ${err.message}`);
       console.error("Guided Search Error:", err);
@@ -222,10 +353,10 @@ export function StudyPathFinder() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <div className="text-center space-y-4 mb-8">
-        <img src="/logo-tilburg.png" alt="Tilburg University Logo" className="mx-auto w-64 h-auto mb-4" />
+        <img src="/logo-tilburg.png" alt="Tilburg University Logo" className="mx-auto w-32 h-auto mb-4" />
         <h1 className="text-4xl font-bold tracking-tight">Find Your Study Path</h1>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Discover the perfect bachelor's program at Tilburg University based on your interests and goals
+          Discover the perfect Bachelor's program at Tilburg University based on your interests and goals
         </p>
       </div>
 
@@ -250,7 +381,7 @@ export function StudyPathFinder() {
         <TabsContent value="guided">
           <Card>
             <AnimatePresence mode="wait">
-              {currentStep < GUIDED_QUESTIONS.length ? (
+              {currentStep < Object.keys(GUIDED_QUESTIONS).length ? (
                 <motion.div
                   key={currentStep}
                   initial={{ opacity: 0, x: 20 }}
@@ -260,11 +391,11 @@ export function StudyPathFinder() {
                   <CardHeader>
                     <CardTitle>{currentQuestion.question}</CardTitle>
                     <CardDescription>
-                      Step {currentStep + 1} of {GUIDED_QUESTIONS.length}
+                      Step {currentStep + 1} of {Object.keys(GUIDED_QUESTIONS).length}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Progress value={((currentStep + 1) / GUIDED_QUESTIONS.length) * 100} className="mb-4" />
+                    <Progress value={((currentStep + 1) / Object.keys(GUIDED_QUESTIONS).length) * 100} className="mb-4" />
                     <RadioGroup
                       value={answers[currentQuestion.id] || ""}
                       onValueChange={(value) => setAnswers((prev) => ({ ...prev, [currentQuestion.id]: value }))}
@@ -292,7 +423,7 @@ export function StudyPathFinder() {
                     </Button>
                     <Button
                       onClick={() => {
-                        if (currentStep === GUIDED_QUESTIONS.length - 1) {
+                        if (currentStep === Object.keys(GUIDED_QUESTIONS).length - 1) {
                           handleGuidedSubmit();
                         } else {
                           setCurrentStep((prev) => prev + 1);
@@ -300,7 +431,7 @@ export function StudyPathFinder() {
                       }}
                       disabled={!answers[currentQuestion.id]}
                     >
-                      {currentStep === GUIDED_QUESTIONS.length - 1 ? (
+                      {currentStep === Object.keys(GUIDED_QUESTIONS).length - 1 ? (
                         <span className="flex items-center">
                           Find Programs
                           <Sparkles className="ml-2 h-4 w-4" />
@@ -325,9 +456,13 @@ export function StudyPathFinder() {
                       <h2 className="text-2xl font-bold mb-2">Our Recommendations for You</h2>
                       <p className="text-muted-foreground max-w-2xl mx-auto">
                         Based on your interests in{" "}
-                        {GUIDED_QUESTIONS.flatMap((q) =>
-                          q.options.find((opt) => opt.id === answers[q.id])?.keywords || []
-                        )
+                        {Object.entries(answers)
+                          .map(([_, answerId]) => {
+                            const question = Object.values(GUIDED_QUESTIONS).find((q) => q.options.some((opt) => opt.id === answerId));
+                            const option = question?.options.find((opt) => opt.id === answerId);
+                            return option?.keywords || [];
+                          })
+                          .flat()
                           .filter((word, index, self) => self.indexOf(word) === index) // Remove duplicates
                           .slice(0, 3)
                           .join(", ") || "your described goals"}
