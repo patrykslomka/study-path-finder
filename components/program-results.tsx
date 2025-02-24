@@ -12,12 +12,9 @@ import { boostPercentage } from "@/lib/match-programs";
 interface Program {
   name: string;
   description: string;
-  subjects: string[];
-  careers: string[];
-  skills: string[];
   keywords: string[];
-  compatibilityPercentage: number;
   link: string;
+  compatibilityPercentage: number;
 }
 
 interface ProgramResultsProps {
@@ -56,75 +53,38 @@ export function ProgramResults({ programs }: ProgramResultsProps) {
             <CardContent>
               <Collapsible>
                 <div className="grid gap-4">
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <BriefcaseIcon className="h-4 w-4 text-muted-foreground" />
-                        <h4 className="font-semibold">Career Opportunities</h4>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {program.careers.slice(0, 3).map((career, i) => (
-                          <Badge key={i} variant="outline">
-                            {career}
-                          </Badge>
-                        ))}
-                        {program.careers.length > 3 && (
-                          <CollapsibleTrigger asChild>
-                            <Button variant="ghost" className="h-6 px-2 text-xs">
-                              +{program.careers.length - 3} more
-                            </Button>
-                          </CollapsibleTrigger>
-                        )}
-                      </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <TagIcon className="h-4 w-4 text-muted-foreground" />
+                      <h4 className="font-semibold">Key Themes</h4>
                     </div>
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2">
-                        <GraduationCap className="h-4 w-4 text-muted-foreground" />
-                        <h4 className="font-semibold">Key Skills</h4>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {program.skills.slice(0, 3).map((skill, i) => (
-                          <Badge key={i} variant="default">
-                            {skill}
-                          </Badge>
-                        ))}
-                        {program.skills.length > 3 && (
-                          <CollapsibleTrigger asChild>
-                            <Button variant="ghost" className="h-6 px-2 text-xs">
-                              +{program.skills.length - 3} more
-                            </Button>
-                          </CollapsibleTrigger>
-                        )}
-                      </div>
+                    <div className="flex flex-wrap gap-2">
+                      {program.keywords.slice(0, 3).map((keyword, i) => (
+                        <Badge key={i} variant="outline">
+                          {keyword}
+                        </Badge>
+                      ))}
+                      {program.keywords.length > 3 && (
+                        <CollapsibleTrigger asChild>
+                          <Button variant="ghost" className="h-6 px-2 text-xs">
+                            +{program.keywords.length - 3} more
+                          </Button>
+                        </CollapsibleTrigger>
+                      )}
                     </div>
                   </div>
                   <CollapsibleContent>
-                    <div className="grid gap-4 md:grid-cols-2">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <BookOpen className="h-4 w-4 text-muted-foreground" />
-                          <h4 className="font-semibold">Core Subjects</h4>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {program.subjects.map((subject, i) => (
-                            <Badge key={i} variant="secondary">
-                              {subject}
-                            </Badge>
-                          ))}
-                        </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <TagIcon className="h-4 w-4 text-muted-foreground" />
+                        <h4 className="font-semibold">All Keywords</h4>
                       </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2">
-                          <TagIcon className="h-4 w-4 text-muted-foreground" />
-                          <h4 className="font-semibold">Keywords</h4>
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {program.keywords.map((keyword, i) => (
-                            <Badge key={i} variant="outline">
-                              {keyword}
-                            </Badge>
-                          ))}
-                        </div>
+                      <div className="flex flex-wrap gap-2">
+                        {program.keywords.map((keyword, i) => (
+                          <Badge key={i} variant="outline">
+                            {keyword}
+                          </Badge>
+                        ))}
                       </div>
                     </div>
                   </CollapsibleContent>
