@@ -28,8 +28,6 @@ const GUIDED_QUESTIONS_BASE = {
       { id: "culture", label: "Culture, Media & Leisure", keywords: ["digital culture", "leisure studies", "theology", "media studies"] },
     ],
   },
-
-  // Dynamic structure for subsequent steps (filled dynamically below)
 };
 
 const DYNAMIC_OPTIONS = {
@@ -148,6 +146,7 @@ export function StudyPathFinder() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [matchingPrograms, setMatchingPrograms] = React.useState<Program[]>([]);
   const [error, setError] = React.useState<string | null>(null);
+  const [aiExplanation, setAiExplanation] = React.useState<string>("");
 
   // Dynamically generate GUIDED_QUESTIONS based on answers
   const getDynamicQuestions = () => {
@@ -200,7 +199,7 @@ export function StudyPathFinder() {
     setError(null);
 
     try {
-      // Combine keywords from selected answers with weights, ensuring all IDs exist
+      // Combine keywords from selected answers with weights
       const weightedKeywords = Object.entries(answers)
         .map(([questionId, answerId]) => {
           const question = Object.values(GUIDED_QUESTIONS).find((q) => q.id === questionId);
@@ -215,12 +214,13 @@ export function StudyPathFinder() {
         })
         .flat();
 
-      console.log("Weighted Keywords for Guided Search:", weightedKeywords); // Debug log
+      console.log("Weighted Keywords for Guided Search:", weightedKeywords);
 
       if (weightedKeywords.length === 0) {
         throw new Error("No keywords selected for matching");
       }
 
+      // Fetch matching programs
       const response = await fetch("/api/match-programs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -233,13 +233,12 @@ export function StudyPathFinder() {
       }
 
       const data = await response.json();
-      console.log("API Response for Guided Search:", data); // Debug log
+      console.log("API Response for Guided Search:", data);
 
-      // Ensure matchingPrograms is always an array, handle potential malformed responses
       const programs = Array.isArray(data.matchingPrograms) ? data.matchingPrograms : [];
-      console.log("Parsed matchingPrograms for Guided Search:", programs); // Debug log
-      setMatchingPrograms(programs);
+      console.log("Parsed matchingPrograms for Guided Search:", programs);
 
+      setMatchingPrograms(programs);
       setCurrentStep(Object.keys(GUIDED_QUESTIONS).length);
     } catch (err) {
       setError(`An error occurred while finding matching programs: ${err.message}`);
@@ -255,6 +254,7 @@ export function StudyPathFinder() {
 
     setIsLoading(true);
     setError(null);
+    setAiExplanation(""); // Reset explanation
 
     try {
       console.time("Freeform Search Processing");
@@ -262,34 +262,35 @@ export function StudyPathFinder() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userInput: freeformInput }),
-        timeout: 30000, // 30-second timeout to prevent hanging
+        timeout: 120000, // 120-second timeout for llama3.2
       });
 
       if (!ollamaResponse.ok) {
-        const errorText = await ollamaResponse.text();
-        throw new Error(`Failed to process with Ollama: ${ollamaResponse.status} - ${errorText}`);
+        throw new Error(`Failed to process with Ollama: ${ollamaResponse.status}`);
       }
 
       const data = await ollamaResponse.json();
-      console.log("Ollama Response for Freeform Search:", data); // Debug log
+      console.log("Ollama Response for Freeform Search:", data);
 
       let weightedKeywords;
-      if ("keywords" in data) {
-        weightedKeywords = data.keywords; // Handle Ollama's keyword output
-      } else if ("weightedKeywords" in data) {
-        weightedKeywords = data.weightedKeywords; // Handle potential legacy format
+      let recommendation;
+      let explanation;
+      if ("keywords" in data && "recommendation" in data && "explanation" in data) {
+        weightedKeywords = data.keywords;
+        recommendation = data.recommendation;
+        explanation = data.explanation;
       } else {
         throw new Error("Invalid Ollama response format");
       }
 
-      console.log("Weighted Keywords from Ollama:", weightedKeywords); // Debug log
+      console.log("Weighted Keywords from Ollama:", weightedKeywords);
 
       // Step 2: Pass to match-programs API
       const matchResponse = await fetch("/api/match-programs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ weightedKeywords }),
-        timeout: 30000, // 30-second timeout
+        timeout: 120000,
       });
 
       if (!matchResponse.ok) {
@@ -298,42 +299,59 @@ export function StudyPathFinder() {
       }
 
       const matchData = await matchResponse.json();
-      console.log("API Response for Freeform Search:", matchData); // Debug log
+      console.log("API Response for Freeform Search:", matchData);
 
-      // Ensure matchingPrograms is always an array, handle potential malformed responses
       const programs = Array.isArray(matchData.matchingPrograms) ? matchData.matchingPrograms : [];
-      console.log("Parsed matchingPrograms for Freeform Search:", programs); // Debug log
+      console.log("Parsed matchingPrograms for Freeform Search:", programs);
+
       setMatchingPrograms(programs);
+      setAiExplanation(explanation || "I understood your interests and recommend these programs based on your goals.");
       console.timeEnd("Freeform Search Processing");
     } catch (err) {
-      // Fallback: Use original string-based matching if Ollama fails
-      if (err.message.includes("Failed to process with Ollama")) {
-        try {
-          const fallbackResponse = await fetch("/api/match-programs", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userInput: freeformInput }),
-            timeout: 30000, // 30-second timeout
-          });
+      console.error("Freeform Search Error:", err);
+      // Fallback: Use string-based matching if Ollama fails
+      try {
+        const fallbackResponse = await fetch("/api/match-programs", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userInput: freeformInput }),
+          timeout: 120000,
+        });
 
-          if (!fallbackResponse.ok) {
-            const errorText = await fallbackResponse.text();
-            throw new Error(`Fallback failed: ${fallbackResponse.status} - ${errorText}`);
-          }
-
-          const data = await fallbackResponse.json();
-          console.log("Fallback API Response:", data); // Debug log
-
-          const programs = Array.isArray(data.matchingPrograms) ? data.matchingPrograms : [];
-          console.log("Parsed matchingPrograms for Fallback:", programs); // Debug log
-          setMatchingPrograms(programs);
-        } catch (fallbackErr) {
-          setError("An error occurred. Please try again.");
-          console.error("Freeform Fallback Error:", fallbackErr);
+        if (!fallbackResponse.ok) {
+          const errorText = await fallbackResponse.text();
+          throw new Error(`Fallback failed: ${fallbackResponse.status} - ${errorText}`);
         }
-      } else {
-        setError("An error occurred while finding matching programs. Please try again.");
-        console.error("Freeform Search Error:", err);
+
+        const data = await fallbackResponse.json();
+        console.log("Fallback API Response:", data);
+
+        const programs = Array.isArray(data.matchingPrograms) ? data.matchingPrograms : [];
+        console.log("Parsed matchingPrograms for Fallback:", programs);
+
+        // Generate AI explanation for the fallback case
+        const programNames = programs.map((program) => program.name).join(", ");
+        const ollamaHost = process.env.OLLAMA_HOST || "http://localhost:11434";
+        const explanationResponse = await fetch("/api/ollama-process", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userInput: `Student's input: ${freeformInput}. Recommended programs: ${programNames}.`,
+          }),
+          timeout: 120000,
+        });
+
+        let explanation = "I understood your interests and recommend these programs based on your goals.";
+        if (explanationResponse.ok) {
+          const explanationData = await explanationResponse.json();
+          explanation = explanationData.explanation || explanation;
+        }
+
+        setMatchingPrograms(programs);
+        setAiExplanation(explanation);
+      } catch (fallbackErr) {
+        setError("An error occurred. Please try again.");
+        console.error("Freeform Fallback Error:", fallbackErr);
       }
     } finally {
       setIsLoading(false);
@@ -346,6 +364,7 @@ export function StudyPathFinder() {
     setFreeformInput("");
     setMatchingPrograms([]);
     setError(null);
+    setAiExplanation("");
   };
 
   const currentQuestion = GUIDED_QUESTIONS[currentStep];
@@ -356,7 +375,7 @@ export function StudyPathFinder() {
         <img src="/logo-tilburg.png" alt="Tilburg University Logo" className="mx-auto w-32 h-auto mb-4" />
         <h1 className="text-4xl font-bold tracking-tight">Find Your Study Path</h1>
         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Discover the perfect Bachelor's program at Tilburg University based on your interests and goals
+          Discover the perfect bachelor's program at Tilburg University based on your interests and goals
         </p>
       </div>
 
@@ -550,6 +569,7 @@ export function StudyPathFinder() {
                   ))}
                   .
                 </p>
+                <p className="text-muted-foreground max-w-2xl mx-auto mt-2 italic">{aiExplanation}</p>
               </div>
               <ProgramResults programs={matchingPrograms} />
               <div className="mt-6 flex justify-center">

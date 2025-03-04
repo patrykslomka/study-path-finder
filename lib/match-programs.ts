@@ -8,7 +8,6 @@ const KEYWORD_WEIGHTS = {
   LOW: 0.5,
 };
 
-// Updated INTENT_KEYWORDS with expanded keywords, common student terms, synonyms, and related terms
 const INTENT_KEYWORDS = {
   business: [
     { term: "business", weight: KEYWORD_WEIGHTS.CRITICAL }, // Common student term
