@@ -29,7 +29,7 @@ A web tool to help prospective students find the perfect Bachelor's program at T
 4. Create .env.local:
   ```bash
   OLLAMA_HOST=http://localhost:11434
-  
+  ```
 ### Running
 1. Start the dev server:
   ```bash
