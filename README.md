@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📚 STUDY-PATH-FINDER @ Tilburg University
 
-## Getting Started
+A web tool to help prospective students find the perfect Bachelor's program at Tilburg University based on their interests and goals. Built with Next.js, TypeScript, and powered by AI (llama3.2 via Ollama).
 
-First, run the development server:
+## ✨ Features
+- **Guided Search**: Step-by-step questions to match programs based on interests, career goals, and skills.
+- **Freeform Search**: Text-based search with AI explanations for recommendations.
+- **Responsive UI**: Modern design with Shadcn/UI and Framer Motion animations.
 
-```bash
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (18.x+)
+- Ollama (for `llama3.2:3b-instruct-q4_0`)
+- Git
+
+### Installation
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/your-username/study-path-finder.git
+   cd study-path-finder
+2. Install dependencies:
+   ```bash
+   npm install
+3. Set up Ollama:
+- Install Ollama (ollama.ai)
+- Pull the model: ollama pull llama3.2:3b-instruct-q4_0
+- Start the server: ollama serve
+4. Create .env.local:
+  ```bash
+  OLLAMA_HOST=http://localhost:11434
+  
+### Running
+1. Start the dev server:
+  ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+- Access at http://localhost:3000.
+2. Ensure Ollama is running for freeform search.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🖥️ Usage
+- **Guided Search**: Answer questions to get tailored program recommendations.
+- **Freeform Search**: Enter your interests (e.g., "I want to learn about people management") to get recommendations with AI explanations.
