@@ -262,15 +262,15 @@ export function StudyPathFinder() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userInput: freeformInput }),
-        timeout: 120000, // 120-second timeout for llama3.2
+        timeout: 120000, // 120-second timeout for Claude
       });
 
       if (!ollamaResponse.ok) {
-        throw new Error(`Failed to process with Ollama: ${ollamaResponse.status}`);
+        throw new Error(`Failed to process with Claude: ${ollamaResponse.status}`);
       }
 
       const data = await ollamaResponse.json();
-      console.log("Ollama Response for Freeform Search:", data);
+      console.log("Claude Response for Freeform Search:", data);
 
       let weightedKeywords;
       let recommendation;
@@ -280,10 +280,10 @@ export function StudyPathFinder() {
         recommendation = data.recommendation;
         explanation = data.explanation;
       } else {
-        throw new Error("Invalid Ollama response format");
+        throw new Error("Invalid Claude response format");
       }
 
-      console.log("Weighted Keywords from Ollama:", weightedKeywords);
+      console.log("Weighted Keywords from Claude:", weightedKeywords);
 
       // Step 2: Pass to match-programs API
       const matchResponse = await fetch("/api/match-programs", {
@@ -309,7 +309,7 @@ export function StudyPathFinder() {
       console.timeEnd("Freeform Search Processing");
     } catch (err) {
       console.error("Freeform Search Error:", err);
-      // Fallback: Use string-based matching if Ollama fails
+      // Fallback: Use string-based matching if Claude fails
       try {
         const fallbackResponse = await fetch("/api/match-programs", {
           method: "POST",
@@ -473,27 +473,6 @@ export function StudyPathFinder() {
                   >
                     <div className="text-center mb-6">
                       <h2 className="text-2xl font-bold mb-2">Our Recommendations for You</h2>
-                      <p className="text-muted-foreground max-w-2xl mx-auto">
-                        Based on your interests in{" "}
-                        {Object.entries(answers)
-                          .map(([_, answerId]) => {
-                            const question = Object.values(GUIDED_QUESTIONS).find((q) => q.options.some((opt) => opt.id === answerId));
-                            const option = question?.options.find((opt) => opt.id === answerId);
-                            return option?.keywords || [];
-                          })
-                          .flat()
-                          .filter((word, index, self) => self.indexOf(word) === index) // Remove duplicates
-                          .slice(0, 3)
-                          .join(", ") || "your described goals"}
-                        , we recommend checking out these programs at Tilburg University:
-                        {matchingPrograms.map((program, index) => (
-                          <span key={program.name} className="inline-block">
-                            {index === 0 ? " " : ", "}
-                            <strong>{program.name}</strong>
-                          </span>
-                        ))}
-                        .
-                      </p>
                     </div>
                     <ProgramResults programs={matchingPrograms} />
                     <div className="mt-6 flex justify-center">
@@ -553,22 +532,6 @@ export function StudyPathFinder() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mt-8">
               <div className="text-center mb-6">
                 <h2 className="text-2xl font-bold mb-2">Our Recommendations for You</h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  Based on your interests in{" "}
-                  {freeformInput
-                    .split(/\s+/)
-                    .filter((word) => word.length > 0 && !["i", "my", "me", "want", "like"].includes(word.toLowerCase()))
-                    .slice(0, 3)
-                    .join(", ") || "your described goals"}
-                  , we recommend checking out these programs at Tilburg University:
-                  {matchingPrograms.map((program, index) => (
-                    <span key={program.name}>
-                      {index === 0 ? " " : ", "}
-                      <strong>{program.name}</strong>
-                    </span>
-                  ))}
-                  .
-                </p>
                 <p className="text-muted-foreground max-w-2xl mx-auto mt-2 italic">{aiExplanation}</p>
               </div>
               <ProgramResults programs={matchingPrograms} />
