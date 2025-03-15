@@ -11,33 +11,33 @@ A web tool to help prospective students find the perfect Bachelor's program at T
 
 ### Prerequisites
 - Node.js (18.x+)
-- Ollama (for `llama3.2:3b-instruct-q4_0`)
+- Anthropic API key (for Claude 3 Haiku)
 - Git
 
 ### Installation
 1. Clone the repo:
    ```bash
-   git clone https://github.com/your-username/study-path-finder.git
+   git clone https://github.com/patrykslomka/study-path-finder.git
    cd study-path-finder
 2. Install dependencies:
    ```bash
    npm install
-3. Set up Ollama:
-- Install Ollama (ollama.ai)
-- Pull the model: ollama pull llama3.2:3b-instruct-q4_0
-- Start the server: ollama serve
-4. Create .env.local:
+3. Set up Anthropic API:
+- Sign up at Anthropic and obtain an API key.
+- Create a .env.local file in the root directory:
   ```bash
-  OLLAMA_HOST=http://localhost:11434
+  ANTHROPIC_API_KEY=your-api-key-here
   ```
+4. Ensure the API key is valid and has access to Claude 3 Haiku.
+
 ### Running
 1. Start the dev server:
   ```bash
 npm run dev
 ```
 - Access at http://localhost:3000.
-2. Ensure Ollama is running for freeform search.
+2. Verify the API key is correctly configured for freeform search functionality.
 
 ## 🖥️ Usage
 - **Guided Search**: Answer questions to get tailored program recommendations.
-- **Freeform Search**: Enter your interests (e.g., "I want to learn about people management") to get recommendations with AI explanations.
+- **Freeform Search**: Enter your interests (e.g., "I want to learn about people management") to get recommendations with detailed AI explanations.
