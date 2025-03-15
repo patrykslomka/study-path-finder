@@ -1,6 +1,6 @@
 # 📚 STUDY-PATH-FINDER @ Tilburg University
 
-A web tool to help prospective students find the perfect Bachelor's program at Tilburg University based on their interests and goals. Built with Next.js, TypeScript, and powered by AI (llama3.2 via Ollama).
+A web tool to help prospective students find the perfect Bachelor's program at Tilburg University based on their interests and goals. Built with Next.js, TypeScript, and powered by AI (Claude 3 Haiku via Anthropic API).
 
 ## ✨ Features
 - **Guided Search**: Step-by-step questions to match programs based on interests, career goals, and skills.
